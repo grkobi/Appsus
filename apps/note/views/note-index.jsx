@@ -1,5 +1,6 @@
 const { useState, useEffect } = React
 
+import { NoteAdd } from "../cmps/note-add.jsx"
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
@@ -22,7 +23,7 @@ export function NoteIndex() {
     }
 
     function onAddNote(){
-        console.log('bla')
+        console.log('add note')
     }
 
 
