@@ -30,15 +30,15 @@ function get(noteId) {
     // return axios.get(CAR_KEY, carId)
 }
 
-function remove(bookId) {
-    return storageService.remove(BOOK_KEY, bookId)
+function remove(noteId) {
+    return storageService.remove(NOTE_KEY, noteId)
 }
 
-function save(book) {
-    if (book.id) {
-        return storageService.put(BOOK_KEY, book)
+function save(note) {
+    if (note.id) {
+        return storageService.put(NOTE_KEY, note)
     } else {
-        return storageService.post(BOOK_KEY, book)
+        return storageService.post(NOTE_KEY, note)
     }
 }
 
