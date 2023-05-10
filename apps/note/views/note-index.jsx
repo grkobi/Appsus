@@ -1,6 +1,7 @@
 const { useState, useEffect } = React
 
 import { NoteAdd } from "../cmps/note-add.jsx"
+import { noteService } from "../services/note.service.js"
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
@@ -15,14 +16,16 @@ export function NoteIndex() {
     }
 
     function loadNotes() {
-
+        noteService.query(filterBy).then((notes) => {
+            setNotes(notes)
+        })
     }
 
     function onRemoveNote() {
 
     }
 
-    function onAddNote(){
+    function onAddNote() {
         console.log('add note')
     }
 
@@ -31,7 +34,7 @@ export function NoteIndex() {
     return (
         <section className="notes-index">
             <NoteFilter onSetFilter={onSetFilter} filterBy={filterBy} />
-            <NoteList  />
+            <NoteList />
             <NoteAdd onAddNote={onAddNote} />
         </section>
     )
