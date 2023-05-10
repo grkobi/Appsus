@@ -1,43 +1,32 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
-const BOOK_KEY = 'notesDB'
-_createBooks()
+const NOTE_KEY = 'notesDB'
+_createNotes()
 
 export const noteService = {
     query,
     get,
     remove,
     save,
-    getEmptyCar: getEmptyBook,
+    getNoteEditData,
     getDefaultFilter,
+    createNote,
 }
 
 function query(filterBy = {}) {
-    // console.log('filterBy service:', filterBy)
-    return storageService.query(BOOK_KEY)
-        .then(books => {
+    return storageService.query(NOTE_KEY)
+        .then(notes => {
             if (filterBy.title) {
                 const regExp = new RegExp(filterBy.title, 'i')
-                books = books.filter(book => regExp.test(book.title))
+                notes = notes.filter(note => regExp.test(note.info.title)|| regExp.test(note.info.label) || regExp.test(note.info.txt))
             }
-            if (filterBy.language) {
-                const regExp = new RegExp(filterBy.language, 'i')
-                books = books.filter(book => regExp.test(book.language))
-            }
-
-            if (filterBy.maxPageCount) {
-                books = books.filter(book => book.pageCount <= filterBy.maxPageCount)
-            }
-            if (filterBy.maxPrice) {
-                books = books.filter(book => book.listPrice.amount <= filterBy.maxPrice)
-            }
-            return books
+            return notes
         })
 }
 
-function get(bookId) {
-    return storageService.get(BOOK_KEY, bookId)
+function get(noteId) {
+    return storageService.get(NOTE_KEY, noteId)
     // return axios.get(CAR_KEY, carId)
 }
 
