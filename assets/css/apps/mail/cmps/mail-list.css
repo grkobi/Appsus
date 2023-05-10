@@ -3,3 +3,7 @@
  .mail-preview {
     gap: 2rem;
  }
+
+ button.starred {
+    background-color: #f1c40f;
+ }
