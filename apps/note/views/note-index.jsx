@@ -34,8 +34,14 @@ export function NoteIndex() {
         loadNotes()
     }
 
-    function onAddNote() {
-        console.log('add note')
+    function onAddNote(newNote) {
+        // if (!newNote.info.txt) return
+        noteService.save(newNote)
+            .then((note) => {
+                notes.push(note)
+                const updatedNotes = notes
+                setNotes(updatedNotes)
+            })
     }
 
 
@@ -43,6 +49,11 @@ export function NoteIndex() {
     return (
         <section className="notes-index">
             {/* <NoteFilter onSetFilter={onSetFilter} filterBy={filterBy} /> */}
+            {/* <form className="new-note" onSubmit={onAddNote}>
+                <label htmlFor="txt"></label>
+                <input value={txt} type="text" name="txt" id="txt" placeholder="Write a note" />
+                <button>Add Note</button>
+            </form> */}
             <NoteList notes={notes} onRemoveNote={onRemoveNote} />
             <NoteAdd onAddNote={onAddNote} />
         </section>
