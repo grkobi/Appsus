@@ -1,4 +1,6 @@
 
+const { useRef } = React
+
 export function NoteAdd({ onAddNote }) {
     const inputRef = useRef()
     return (
