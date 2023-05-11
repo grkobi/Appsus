@@ -13,7 +13,7 @@ const gNotes = [{
         backgroundColor: 'lightblue'
     },
     info: {
-        txt: 'Fullstack Me Baby!'
+        txt: 'To clean my apartment'
     }
 },
 {
