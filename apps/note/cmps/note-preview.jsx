@@ -15,7 +15,7 @@ export function NotePreview({ note }) {
     //     <Component />
     // )
 
-    const { info: { txt }, type } = note
+    const { type } = note
     console.log(note)
     function typeToDisplay() {
         switch (type) {
@@ -31,7 +31,9 @@ export function NotePreview({ note }) {
     }
 
     return (
-        typeToDisplay()
+        <section className='note-preview'  style={{ backgroundColor: note.color ? note.color : '#00DDFF' }}>
+        {typeToDisplay()}
+        </section>
     )
 }
 

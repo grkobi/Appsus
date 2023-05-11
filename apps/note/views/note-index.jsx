@@ -25,6 +25,7 @@ export function NoteIndex() {
 
     function onRemoveNote() {
 
+        loadNotes()
     }
 
     function onAddNote() {

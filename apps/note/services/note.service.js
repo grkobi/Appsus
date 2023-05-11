@@ -25,7 +25,8 @@ const gNotes = [{
         backgroundColor: '#00d'
     },
     info: {
-        url: 'www.youtube.com/embed/'
+        url: 'www.youtube.com/embed/',
+        title: "Bobi and me"
     }
 }]
 

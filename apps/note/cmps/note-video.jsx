@@ -1,9 +1,10 @@
 export function NoteVideo({ note }) {
     console.log(note)
     return (
-        <p>
-
-        </p>
+        <article>
+            <p>{note.info.url}</p>
+            <p>{note.info.title}</p>
+        </article>
     )
 
 }
