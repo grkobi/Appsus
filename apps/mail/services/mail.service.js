@@ -9,60 +9,65 @@ const gEmails = [{
     subject: 'Miss you!',
     body: 'Would love to catch up sometimes',
     isRead: false,
-    isStared: false,
+    isStarred: false,
     sentAt: 1551133930594,
     removedAt: null,
     from: 'momo@momo.com',
     to: 'user@appsus.com',
     folder: 'inbox',
+    labels: ['important', 'romantic']
 },
 {
     id: 'e102',
     subject: 'Hello!',
     body: 'It rains outside',
     isRead: false,
-    isStared: false,
+    isStarred: false,
     sentAt: 1551133930594,
     removedAt: null,
     from: 'user@appsus.com',
     to: 'yoyo@momo.com',
     folder: 'sent',
+    labels: [ 'romantic']
 },
 {
     id: 'e103',
     subject: 'Miss you!',
     body: 'Would love to catch up sometimes',
     isRead: false,
-    isStared: true,
+    isStarred: true,
     sentAt: 1551133930594,
     removedAt: null,
     from: 'momo@momo.com',
     to: 'user@appsus.com',
     folder: 'trash',
+    labels: ['important']
 },
 {
     id: 'e104',
     subject: 'Miss you!',
     body: 'Would love to catch up sometimes',
     isRead: false,
-    isStared: false,
+    isStarred: false,
     sentAt: 1551133930594,
     removedAt: null,
     from: 'momo@momo.com',
     to: 'user@appsus.com',
     folder: 'drafts',
+    labels: []
 },
 {
     id: 'e105',
     subject: 'Miss you!',
     body: 'Would love to catch up sometimes',
     isRead: false,
-    isStared: true,
+    isStarred: true,
     sentAt: 1551133930594,
     removedAt: null,
     from: 'momo@momo.com',
     to: 'user@appsus.com',
-    folder: 'drafts'
+    folder: 'drafts',
+    labels: []
 }]
 const loggedinUser = {
     email: 'user@appsus.com',
@@ -89,7 +94,7 @@ function getDefaultFilter() {
         folder: '',
         txt: '',
         isRead: false, // (optional property, if missing: show all)
-        isStared: false, // (optional property, if missing: show all)
+        isStarred: false, // (optional property, if missing: show all)
         lables: ['important', 'romantic'] // has any of the labels
     }
 }
@@ -162,7 +167,7 @@ function toggleIsRead(emailId) {
 function toggleIsStarred(emailId) {
     return storageService.get(EMAIL_KEY, emailId)
         .then(email => {
-            email.isStared = !email.isStared
+            email.isStarred = !email.isStarred
             return storageService.put(EMAIL_KEY, email)
         })
 }

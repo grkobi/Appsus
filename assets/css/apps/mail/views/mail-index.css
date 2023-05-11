@@ -47,15 +47,27 @@
 
     .folder-filter .side-bar-items li{
         width:90%;
+        
     }
 
-    .folder-filter .side-bar-items li button{
+    .folder-filter .side-bar-items  button{
         width: 100%;
         padding: 0.5rem 0.5rem;
+        background-color: var(--clrMailFolderActiveBg);
     }
 
     .mail-index .compose-btn{
+        padding: 0;
+        display: flex;
+        align-items: center;
         width: 50%;
         height: 3.5rem;
         padding: 0.5rem 0.5rem;
+        background-color: var(--clrMailComposeBtnBg);
+    }
+
+    .compose-btn img{
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0.5rem;
     }
