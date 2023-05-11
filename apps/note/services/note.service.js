@@ -1,5 +1,5 @@
-import { utilService } from './util.service.js'
-import { storageService } from './async-storage.service.js'
+import { utilService } from '../../../services/util.service.js'
+import { storageService } from '../../../services/async-storage.service.js'
 
 const NOTE_KEY = 'notesDB'
 
@@ -7,13 +7,25 @@ const NOTE_KEY = 'notesDB'
 const gNotes = [{
     id: 'n101',
     createdAt: 1112222,
-    type: 'NoteTxt',
+    type: 'note-txt',
     isPinned: true,
     style: {
         backgroundColor: '#00d'
     },
     info: {
         txt: 'Fullstack Me Baby!'
+    }
+},
+{
+    id: 'n1012',
+    createdAt: 1125434512222,
+    type: 'note-video',
+    isPinned: true,
+    style: {
+        backgroundColor: '#00d'
+    },
+    info: {
+        url: 'www.youtube.com/embed/'
     }
 }]
 

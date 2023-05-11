@@ -23,9 +23,9 @@ export function NoteIndex() {
             })
     }
 
-    // function onRemoveNote() {
+    function onRemoveNote() {
 
-    // }
+    }
 
     function onAddNote() {
         console.log('add note')

@@ -1,4 +1,6 @@
-
+import { NoteTxt } from "./note-txt.jsx"
+import { NoteImg } from "./note-img.jsx"
+import { NoteVideo } from "./note-video.jsx"
 
 // const typeToComponent = {
 //     txt: NoteTxt,
@@ -12,12 +14,24 @@ export function NotePreview({ note }) {
     // return (
     //     <Component />
     // )
-    // const {  info: { txt }, type } = note
-    console.log('noteeeee', note)
+
+    const { info: { txt }, type } = note
+    console.log(note)
+    function typeToDisplay() {
+        switch (type) {
+            case "note-txt":
+                return <NoteTxt note={note} />
+            case "note-img":
+                return <NoteImg note={note} />
+            case "note-video":
+                return <NoteVideo note={note} />
+            default:
+                return <div>Unable to find a note component {type}</div>
+        }
+    }
+
     return (
-        <article className="note-preview">
-            <h4>{note.info.txt}</h4>
-        </article>
+        typeToDisplay()
     )
 }
 
