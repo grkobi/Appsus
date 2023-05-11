@@ -35,7 +35,7 @@ export function NoteIndex() {
 
     return (
         <section className="notes-index">
-            <NoteFilter onSetFilter={onSetFilter} filterBy={filterBy} />
+            {/* <NoteFilter onSetFilter={onSetFilter} filterBy={filterBy} /> */}
             <NoteList notes={notes} />
             <NoteAdd onAddNote={onAddNote} />
         </section>

@@ -1,10 +1,12 @@
 
+
 export function NoteAdd({ onAddNote }) {
-    const inputRef = useRef()
+    // const inputRef = useRef()
     return (
         <div>
-            <input ref={inputRef} type="text" id="note" placeholder="Type a new note"></input>
-            <button onClick={() => onAddNote(inputRef.current.text)}>Add note</button>
+            {/* <input ref={inputRef} type="text" id="note" placeholder="Type a new note"></input> */}
+            {/* <button onClick={() => onAddNote(inputRef.current.text)}>Add note</button> */}
+            <button>bla bla</button>
         </div>
 
     )

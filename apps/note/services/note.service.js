@@ -24,7 +24,6 @@ export const noteService = {
     get,
     remove,
     save,
-    getNoteEditData,
     getDefaultFilter,
     createNote
 }
