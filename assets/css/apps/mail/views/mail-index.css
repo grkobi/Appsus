@@ -1,73 +1,32 @@
  /* mail index  */
-
  
  .mail-index {
-    display: grid;
-    grid-template-columns: minmax( 3rem, 15.25rem) auto;
-    grid-template-rows: 3.5rem auto;
-    background-color:var(--clrMailSideBarBg) ;
-    height: 100vh;
+     display: grid;
+     grid-template-columns: minmax(3rem, 15.25rem) auto;
+     grid-template-rows: 3.5rem auto;
+     background-color: var(--clrMailSideBarBg);
+     height: 100vh;
  }
 
- .mail-index button,input{
-    border-style: none;
-    border-radius: 1rem;
+ .mail-index button,
+ input {
+     border-style: none;
+     border-radius: 1rem;
  }
 
- .mail-index input{
-    text-align: center;
+
+ .mail-index .compose-btn {
+     padding: 0;
+     display: flex;
+     align-items: center;
+     width: 50%;
+     height: 3.5rem;
+     padding: 0.5rem 0.5rem;
+     background-color: var(--clrMailComposeBtnBg);
  }
 
- .folder-filter{
-    width: 100%;
+ .compose-btn img {
+     width: 1.5rem;
+     height: 1.5rem;
+     margin-right: 0.5rem;
  }
-
- .search-filter{
-    width: 50%;
- }
- .search-filter .search-form{
-    width: 100%;
-    height:50%;
-    align-self: flex-end;
- }
-
- .search-form input{
-    flex-grow: 1;
- }
-
- 
-
- .folder-filter .side-bar-items{
-    align-items: start;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
- }
-
-    .folder-filter .side-bar-items li{
-        width:90%;
-        
-    }
-
-    .folder-filter .side-bar-items  button{
-        width: 100%;
-        padding: 0.5rem 0.5rem;
-        background-color: var(--clrMailFolderActiveBg);
-    }
-
-    .mail-index .compose-btn{
-        padding: 0;
-        display: flex;
-        align-items: center;
-        width: 50%;
-        height: 3.5rem;
-        padding: 0.5rem 0.5rem;
-        background-color: var(--clrMailComposeBtnBg);
-    }
-
-    .compose-btn img{
-        width: 1.5rem;
-        height: 1.5rem;
-        margin-right: 0.5rem;
-    }
