@@ -1,7 +1,9 @@
  /* mail list */
 .mail-list{
     padding:0;
+    margin: 0;
     background-color: var(--clrMailListBg);
+    border-radius: 1rem;
 }
 
 .mail-list button{
