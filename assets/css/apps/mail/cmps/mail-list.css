@@ -1,6 +1,17 @@
  /* mail list */
 .mail-list{
     padding:0;
+    background-color: var(--clrMailListBg);
+}
+
+.mail-list button{
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.mail-list button img{
+    width: 1.5em;
+    height: 1.5em;
 }
 
 .mail-list-item {
@@ -20,6 +31,8 @@
     gap: 2rem;
  }
 
- button.starred {
-    background-color: #f1c40f;
+ .mail-preview :nth-child(1) {
+    width: 10.5rem;
  }
+
+ 

@@ -1,5 +1,8 @@
 :root {
     --main-bg-color: lightblue;
-    --clrMailSideBarFill: #202124;
+    --clrMailTxt: #202124;
     --clrMailSideBarBg: #eaf1fb;
+    --clrMailListBg:#ffffff;
+    --clrMailComposeBtnBg: #c2e7ff;
+    --clrMailFolderActiveBg:#d3e3fd;
 }

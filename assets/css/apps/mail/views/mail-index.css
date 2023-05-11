@@ -1,34 +1,32 @@
  /* mail index  */
-
+ 
  .mail-index {
-    display: grid;
-    grid-template-columns: minmax( 3rem, 15.25rem) auto;
+     display: grid;
+     grid-template-columns: minmax(3rem, 15.25rem) auto;
+     grid-template-rows: 3.5rem auto;
+     background-color: var(--clrMailSideBarBg);
+     height: 100vh;
  }
 
- .folder-filter{
-    width: 100%;
+ .mail-index button,
+ input {
+     border-style: none;
+     border-radius: 1rem;
  }
 
- .folder-filter .side-bar-items{
-    align-items: start;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+
+ .mail-index .compose-btn {
+     padding: 0;
+     display: flex;
+     align-items: center;
+     width: 50%;
+     height: 3.5rem;
+     padding: 0.5rem 0.5rem;
+     background-color: var(--clrMailComposeBtnBg);
  }
 
-    .folder-filter .side-bar-items li{
-        width:90%;
-    }
-
-    .folder-filter .side-bar-items li button{
-        width: 100%;
-        padding: 0.5rem 0.5rem;
-        border-radius: 0.5rem;
-    }
-
-    .mail-index .compose-btn{
-        width: 50%;
-        padding: 0.5rem 0.5rem;
-        border-radius: 0.5rem;
-    }
+ .compose-btn img {
+     width: 1.5rem;
+     height: 1.5rem;
+     margin-right: 0.5rem;
+ }

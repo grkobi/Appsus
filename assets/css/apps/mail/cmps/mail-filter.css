@@ -1,0 +1,46 @@
+
+
+.search-filter {
+    width: 50%;
+}
+
+
+.search-filter .search-form {
+    width: 100%;
+    height: 50%;
+    align-self: flex-end;
+}
+
+
+.search-filter input {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.search-filter button {
+    display:none;
+}
+
+
+.folder-filter {
+    width: 100%;
+}
+
+.folder-filter .side-bar-items {
+    align-items: start;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.folder-filter .side-bar-items li {
+    width: 90%;
+
+}
+
+.folder-filter .side-bar-items button {
+    width: 100%;
+    padding: 0.5rem 0.5rem;
+    background-color: var(--clrMailFolderActiveBg);
+}
