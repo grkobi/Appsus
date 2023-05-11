@@ -23,8 +23,14 @@ export function NoteIndex() {
             })
     }
 
-    function onRemoveNote() {
+    function onRemoveNote(noteId) {
+        noteService.remove(noteId).then(() => {
+            const updatedNotes = notes.filter(note => noteId !== note.id)
+            setNotes(updatedNotes)
+            loadNotes()
+        }
 
+        )
         loadNotes()
     }
 
@@ -37,7 +43,7 @@ export function NoteIndex() {
     return (
         <section className="notes-index">
             {/* <NoteFilter onSetFilter={onSetFilter} filterBy={filterBy} /> */}
-            <NoteList notes={notes} />
+            <NoteList notes={notes} onRemoveNote={onRemoveNote} />
             <NoteAdd onAddNote={onAddNote} />
         </section>
     )

@@ -1,9 +1,12 @@
 export function NoteImg({ note }) {
     console.log(note)
     return (
-        <p>
-
-        </p>
+        <div className="note-img" >
+            <h4>{note.info.title}</h4>
+            <div className='image-container'>
+                <img className="img" src={note.info.url} alt="" />
+            </div>
+        </div>
     )
 
 }

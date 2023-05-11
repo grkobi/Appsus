@@ -10,24 +10,26 @@ const gNotes = [{
     type: 'note-txt',
     isPinned: true,
     style: {
-        backgroundColor: '#00d'
+        backgroundColor: 'lightblue'
     },
     info: {
         txt: 'Fullstack Me Baby!'
     }
 },
 {
-    id: 'n1012',
+    id: 'n102',
     createdAt: 1125434512222,
     type: 'note-video',
     isPinned: true,
     style: {
-        backgroundColor: '#00d'
+        backgroundColor: '#EB5406'
     },
     info: {
-        url: 'www.youtube.com/embed/',
+        url: 'https://player.vimeo.com/video/255688717?h=4b15bf92a9',
         title: "Bobi and me"
-    }
+    },
+
+
 }]
 
 _createNotes()

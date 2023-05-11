@@ -9,7 +9,7 @@ import { NoteVideo } from "./note-video.jsx"
 //     todo: NoteTodos
 // }
 
-export function NotePreview({ note }) {
+export function NotePreview({ note, onRemoveNote }) {
     // const Component = typeToComponent[note.type]
     // return (
     //     <Component />
@@ -31,8 +31,9 @@ export function NotePreview({ note }) {
     }
 
     return (
-        <section className='note-preview'  style={{ backgroundColor: note.color ? note.color : '#00DDFF' }}>
+        <section className='note-preview'  style={{ backgroundColor: note.style.backgroundColor ? note.style.backgroundColor : '#00DDFF' }}>
         {typeToDisplay()}
+        <button onClick={() => onRemoveNote(note.id)} className="remove-note">Delete</button>
         </section>
     )
 }

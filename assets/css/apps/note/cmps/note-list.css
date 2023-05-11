@@ -1,1 +1,6 @@
  /* note list */
+
+ .notes-list{
+    column-count: 3;
+    column-gap: 20px;
+ }

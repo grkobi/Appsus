@@ -1,10 +1,14 @@
 export function NoteVideo({ note }) {
-    console.log(note)
+    let idx = note.info.url.indexOf('=')
+    // const urlCode = note.info.url.substring(idx + 1)
+    // const newUrl = `https://www.youtube.com/embed/${urlCode}`
     return (
-        <article>
-            <p>{note.info.url}</p>
-            <p>{note.info.title}</p>
-        </article>
+        <React.Fragment>
+            <div className="note-video">
+                <p>{note.info.title}</p>
+                <iframe width="200" height="100" src={note.info.url}></iframe>
+            </div>
+        </React.Fragment>
     )
 
 }
