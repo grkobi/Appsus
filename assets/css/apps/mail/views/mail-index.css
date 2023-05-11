@@ -1,1 +1,34 @@
  /* mail index  */
+
+ .mail-index {
+    display: grid;
+    grid-template-columns: minmax( 3rem, 15.25rem) auto;
+ }
+
+ .folder-filter{
+    width: 100%;
+ }
+
+ .folder-filter .side-bar-items{
+    align-items: start;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+ }
+
+    .folder-filter .side-bar-items li{
+        width:90%;
+    }
+
+    .folder-filter .side-bar-items li button{
+        width: 100%;
+        padding: 0.5rem 0.5rem;
+        border-radius: 0.5rem;
+    }
+
+    .mail-index .compose-btn{
+        width: 50%;
+        padding: 0.5rem 0.5rem;
+        border-radius: 0.5rem;
+    }

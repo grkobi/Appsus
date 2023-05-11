@@ -86,7 +86,7 @@ export const mailService = {
 
 function getDefaultFilter() {
     return {
-        status: '',
+        folder: '',
         txt: '',
         isRead: false, // (optional property, if missing: show all)
         isStared: false, // (optional property, if missing: show all)
@@ -104,9 +104,14 @@ function query(filterBy = {}) {
             })
         }
         if (filterBy.folder) {
+            if (filterBy.folder === 'starred') {
+                emails = emails.filter(email => {
+                    return email.isStared
+                })
+            } else {
             emails = emails.filter(email => {
                 return email.folder === filterBy.folder
-            })
+            })}
         }
         // if (filterBy.isStared) {
         //     emails = emails.filter(email => {

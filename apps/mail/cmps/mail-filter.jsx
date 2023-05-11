@@ -42,6 +42,7 @@ export function SideFilter({ onSetFilter, filterBy }) {
     return <section className="folder-filter">
         <ul className="side-bar-items clean-list">
             <li className="side-bar-item"><button onClick={() => setFilterByToEdit({ ...filterByToEdit, folder: 'inbox' })}>Inbox</button></li>
+            <li className="side-bar-item"><button onClick={() => setFilterByToEdit({ ...filterByToEdit, folder: 'starred' })}>Starred</button></li>
             <li className="side-bar-item"><button onClick={() => setFilterByToEdit({ ...filterByToEdit, folder: 'sent' })}>Sent</button></li>
             <li className="side-bar-item"><button onClick={() => setFilterByToEdit({ ...filterByToEdit, folder: 'drafts' })}>Drafts</button></li>
             <li className="side-bar-item"><button onClick={() => setFilterByToEdit({ ...filterByToEdit, folder: 'trash' })}>Trash</button></li>

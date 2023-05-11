@@ -9,6 +9,7 @@ import { SideFilter } from "../cmps/mail-filter.jsx"
 export function MailIndex() {
     const [mails, setMails] = useState([])
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+    const [isComposeModalOpen, setComposeModalOpen] = useState(false)
     console.log('mails', mails)
     useEffect(() => {
         loadMails()
@@ -28,6 +29,16 @@ export function MailIndex() {
         })
     }
 
+    function onToggleIsStarred(mailId) {
+        mailService.toggleIsStarred(mailId).then(() => {
+            const updatedMails = mails.map(mail => {
+                if (mail.id === mailId) mail.isStarred = !mail.isStarred
+                return mail
+            })
+            setMails(updatedMails)
+        })
+    }
+
 
     function onSetFilter(filterBy) {
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, ...filterBy }))
@@ -36,9 +47,16 @@ export function MailIndex() {
     if (!mails) return <div>Loading...</div>
     
     return <section className="mail-index">
+        <button className="compose-btn" onClick={() => setComposeModalOpen(true)}>Compose</button>
         <SearchFilter onSetFilter={onSetFilter} filterBy={filterBy} />
         <SideFilter onSetFilter={onSetFilter} filterBy={filterBy}/>
-        <MailList mails={mails} onDeleteMail={onDeleteMail} />
+        <MailList mails={mails} onDeleteMail={onDeleteMail} onToggleIsStarred={onToggleIsStarred} />
+        {isComposeModalOpen && (
+                <div className="compose-modal">
+                    Compose modal
+                    <button onClick={() => setComposeModalOpen(false)}>Close</button>
+                </div>
+            )}
         </section>
 }
 
