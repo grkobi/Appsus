@@ -1,9 +1,12 @@
  /* mail index  */
- 
+ *{
+    font-family: roboto, serif;
+    font-size: 1rem;
+ }
  .mail-index {
      display: grid;
      grid-template-columns: minmax(3rem, 15.25rem) auto;
-     grid-template-rows: 3.5rem auto;
+     grid-template-rows: 4rem auto;
      background-color: var(--clrMailSideBarBg);
      height: 100vh;
  }
@@ -12,6 +15,10 @@
  input {
      border-style: none;
      border-radius: 1rem;
+ }
+
+ .mail-index input {
+    border-style: none;
  }
 
 
@@ -23,6 +30,7 @@
      height: 3.5rem;
      padding: 0.5rem 0.5rem;
      background-color: var(--clrMailComposeBtnBg);
+     color: var(--clrSideBarTxt);
  }
 
  .compose-btn img {

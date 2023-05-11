@@ -22,7 +22,7 @@ export function SearchFilter({ onSetFilter, filterBy }) {
 
     return <section className="search-filter flex">
         <form className="search-form flex" onSubmit={onSubmitFilter}>
-            <input value={filterByToEdit.txt} onChange={handleChange} name="txt" type="text" placeholder="Search mail"  />
+            <input className="search-input" value={filterByToEdit.txt} onChange={handleChange} name="txt" type="text" placeholder="Search mail"  />
             <button type="submit">Submit</button>
         </form>
     </section>
