@@ -5,12 +5,15 @@ import { MailList } from "../cmps/mail-list.jsx"
 import { mailService } from "../services/mail.service.js"
 import { SearchFilter } from "../cmps/mail-filter.jsx"
 import { SideFilter } from "../cmps/mail-filter.jsx"
+import { ComposeModal } from "../cmps/compose-modal.jsx"
 
 export function MailIndex() {
     const [mails, setMails] = useState([])
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
     const [isComposeModalOpen, setComposeModalOpen] = useState(false)
     console.log('mails', mails)
+
+
     useEffect(() => {
         loadMails()
     }, [filterBy])
@@ -29,37 +32,42 @@ export function MailIndex() {
         })
     }
 
-    function onToggleIsStarred(mailId) {
-        mailService.toggleIsStarred(mailId).then(() => {
-            const updatedMails = mails.map(mail => {
-                if (mail.id === mailId) mail.isStarred = !mail.isStarred
-                return mail
-            })
-            setMails(updatedMails)
-        })
-    }
 
-    function onToggleIsImportant(mailId) {
-        mailService.toggleIsImportant(mailId).then(() => {
-            const updatedMails = mails.map(mail => {
-                if (mail.id === mailId){
-                    if(mail.labels.includes('important')) mail.labels.splice(mail.labels.indexOf('important'),1)
-                else mail.labels.push('important')
+    const toggles = {
+        onToggleIsStarred: function (mailId) {
+            mailService.toggleIsStarred(mailId).then(() => {
+                const updatedMails = mails.map(mail => {
+                    if (mail.id === mailId) mail.isStarred = !mail.isStarred
+                    return mail
+                })
+                setMails(updatedMails)
             }
-                return mail
-            })
-            setMails(updatedMails)
-        })
-    }
+            )
+        },
 
-    function onToggleIsRead(mailId) {
-        mailService.toggleIsRead(mailId).then(() => {
-            const updatedMails = mails.map(mail => {
-                if (mail.id === mailId) mail.isRead = !mail.isRead
-                return mail
+        onToggleIsImportant: function (mailId) {
+            mailService.toggleIsImportant(mailId).then(() => {
+                const updatedMails = mails.map(mail => {
+                    if (mail.id === mailId) {
+                        if (mail.labels.includes('important')) mail.labels.splice(mail.labels.indexOf('important'), 1)
+                        else mail.labels.push('important')
+                    }
+                    return mail
+                })
+                setMails(updatedMails)
             })
-            setMails(updatedMails)
-        })
+        },
+
+        onToggleIsRead: function (mailId) {
+            mailService.toggleIsRead(mailId).then(() => {
+                const updatedMails = mails.map(mail => {
+                    if (mail.id === mailId) mail.isRead = !mail.isRead
+                    return mail
+                })
+                setMails(updatedMails)
+            })
+        }
+
     }
 
 
@@ -76,13 +84,24 @@ export function MailIndex() {
         </button>
         <SearchFilter onSetFilter={onSetFilter} filterBy={filterBy} />
         <SideFilter onSetFilter={onSetFilter} filterBy={filterBy} />
-        <MailList mails={mails} onDeleteMail={onDeleteMail} onToggleIsStarred={onToggleIsStarred} onToggleIsImportant={onToggleIsImportant} onToggleIsRead={onToggleIsRead}/>
+        <MailList mails={mails} onDeleteMail={onDeleteMail} onToggle={toggles} />
         {isComposeModalOpen && (
             <div className="compose-modal">
-                Compose modal
+                <form className="compose-form flex column">
+                    <input type="text" placeholder="To" />
+                    <input type="text" placeholder="Subject" />
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <button>Send</button>
+                </form>
                 <button onClick={() => setComposeModalOpen(false)}>Close</button>
             </div>
         )}
+
+        {/* {isComposeModalOpen && ( *
+        <ComposeModal onClose={() => setComposeModalOpen(false)} />
+        )} */}
+
     </section>
 }
+
 
