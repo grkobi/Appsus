@@ -43,6 +43,10 @@
 .folder-filter .side-bar-items button {
     width: 100%;
     padding: 0.5rem 0.5rem;
-    background-color: var(--clrMailFolderActiveBg);
+    background-color: transparent;
     color: var(--clrMailFolderActiveTxt);
+}
+
+.folder-filter .side-bar-items button.active {
+    background-color: var(--clrMailFolderActiveBg);
 }

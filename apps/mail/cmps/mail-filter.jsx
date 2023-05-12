@@ -47,15 +47,15 @@ export function SideFilter({ filterBy, onSetFilter }) {
         setFilterByToEdit({ ...filterByToEdit, [field]: value })
     }
 
-    
+    const { folder } = filterByToEdit
 
     return <section className="folder-filter">
         <ul className="side-bar-items clean-list">
-            <li className="side-bar-item"><button name="folder" value={'inbox'} onClick={handleClick}>Inbox</button></li>
-            <li className="side-bar-item"><button name="folder" value={'starred'} onClick={handleClick}>Starred</button></li>
-            <li className="side-bar-item"><button name="folder" value={'sent'} onClick={handleClick}>Sent</button></li>
-            <li className="side-bar-item"><button name="folder" value={'drafts'} onClick={handleClick}>Drafts</button></li>
-            <li className="side-bar-item"><button name="folder" value={'trash'} onClick={handleClick}>Trash</button></li>
+            <li className="side-bar-item"><button name="folder" className={folder === 'inbox' ? 'active' : ''} value={'inbox'} onClick={handleClick}>Inbox</button></li>
+            <li className="side-bar-item"><button name="folder" className={folder === 'starred' ? 'active' : ''} value={'starred'} onClick={handleClick}>Starred</button></li>
+            <li className="side-bar-item"><button name="folder" className={folder === 'sent' ? 'active' : ''} value={'sent'} onClick={handleClick}>Sent</button></li>
+            <li className="side-bar-item"><button name="folder" className={folder === 'drafts' ? 'active' : ''} value={'drafts'} onClick={handleClick}>Drafts</button></li>
+            <li className="side-bar-item"><button name="folder" className={folder === 'trash' ? 'active' : ''} value={'trash'} onClick={handleClick}>Trash</button></li>
         </ul>
     </section>
 }
