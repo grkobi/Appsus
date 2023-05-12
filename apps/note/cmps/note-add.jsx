@@ -25,15 +25,15 @@ export function NoteAdd({ onNewNote, newNote }) {
 
     return (
 
-        <form onSubmit={handleSubmitNote}>
-            <section>
+        <form onSubmit={handleSubmitNote} className="flex create-form">
+            <section className="note-creator-container">
                 <div>
                     <input type="text"
                         id="txt"
                         name="txt"
                         placeholder={noteType === 'Enter text'}
                     />
-                    {noteType !== 'note-txt' ? <input className="note-data" placeholder={PLACEHOLDER[noteType]} type='text' id='noteData' name='noteData' /> : null}
+                    {/* {noteType !== 'note-txt' ? <input className="note-data" placeholder={PLACEHOLDER[noteType]} type='text' id='noteData' name='noteData' /> : null} */}
                 </div>
                 <div className="options-container">
                     <label htmlFor="note-txt"></label>

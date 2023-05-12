@@ -1,0 +1,13 @@
+.create-form {
+    justify-content: center;
+}
+
+.note-creator-container {
+    display: flex;
+    padding: 0.7rem 1rem;
+    gap: 10px;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    border-radius: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
