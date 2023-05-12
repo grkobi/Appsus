@@ -1,0 +1,75 @@
+.compose-modal{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 5vh;
+    left: 10vw;
+    width: 50vw;
+    height: 80vh;
+    background-color: var(--clrMailListBg);
+    border-color: var(--clrIconsHoversBg);
+    border-radius: 1rem;
+    box-shadow: 0 0 1em rgb(191, 221, 249);
+    /* opacity: 1; */
+    /* transition: opacity 2s ease-in-out; */
+}
+
+.compose-modal .compose-header{
+    flex-grow: 1;
+    background-color: var(--clrMailSideBarBg);
+    font-family: inherit;
+    font-weight: 700;
+}
+    
+
+
+.compose-modal .compose-form{
+    flex-grow: 5;
+    gap: 1rem;
+    /* padding: 1rem; */
+}
+
+.compose-modal .compose-header span{
+    margin: 0;
+    align-self: center;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    font-style: helvetica;
+    color: var(--clrMailFolderActiveTxt);
+    padding-inline-start: 1em;
+}  
+
+.compose-modal .compose-header button{
+    margin: 0;
+    align-self: center;
+    border-style: none;
+    background-color: transparent;
+    color: var(--clrMailFolderActiveTxt);
+    padding-inline-end: 1em;
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.compose-form label{
+    display: none;
+}
+
+.compose-form > *{
+    border-style: none;
+    outline: none;
+    padding: 1em;
+}
+
+.compose-form input{
+    background-color: var(--clrMailListBg);
+    border-bottom: 1px solid var(--clrMailSideBarBg);
+}
+
+
+
+.compose-form textarea{
+    flex-grow: 1;
+}
+
+
+

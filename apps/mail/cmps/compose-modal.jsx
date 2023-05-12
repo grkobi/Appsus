@@ -35,19 +35,24 @@ export function ComposeModal({onClose}){
 
     return (
         <section className="compose-modal">
+            <header className="compose-header flex space-between">
+            <span>New Message</span>
+            <button onClick={onClose}>x</button>
+            </header>
+            
                 <form onSubmit={onSendMail} className="compose-form flex column">
-                    <label htmlFor="from">From:</label>
-                    <input name="from" id="from" type="text" value={from} onChange={handleChange} placeholder="" />
+                    <label htmlFor="from"></label>
+                    <input name="from" id="from" type="text" value={from} onChange={handleChange} placeholder="From:" />
 
-                    <label htmlFor="to">To:</label>
-                    <input name="to" id="to" type="text" value={mail.to} onChange={handleChange} placeholder="" />
+                    <label htmlFor="to"></label>
+                    <input name="to" id="to" type="text" value={mail.to} onChange={handleChange} placeholder="To:" />
 
-                    <label htmlFor="subject">Subject:</label>
+                    <label htmlFor="subject"></label>
                     <input name="subject" id="subject" value={mail.subject} onChange={handleChange} type="text" placeholder="Subject" />
                     <textarea name="body" id="body" cols="30" rows="10" value={mail.body} onChange={handleChange}></textarea>
                     <button>Send</button>
                 </form>
-                <button onClick={onClose}>Close</button>
+                
             </section>
     )
 }
