@@ -26,7 +26,7 @@ const gNotes = [{
     },
     info: {
         url: 'https://player.vimeo.com/video/255688717?h=4b15bf92a9',
-        title: "Bobi and me"
+        title: "The beautiful Myanmar"
     },
 
 
