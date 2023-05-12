@@ -1,51 +1,61 @@
 const { useState, useEffect } = React
 
-export function SearchFilter({ onSetFilter, filterBy }) {
-    const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
-    // const [searchBy, setSearchBy] = useState('')
 
+
+export function SearchFilter({ searchBy, onSetSearch }) {
+    const [searchByTxt, setSearchByTxt] = useState(searchBy)
+    // console.log('searchByToEdit', searchByToEdit)
+
+    useEffect(() => {
+        onSetSearch(searchByTxt)
+    }, [searchByTxt])
+
+    function handleChange(ev) {
+        const value = ev.target.value
+        setSearchByTxt(value)
+    }
+
+    function onSubmitSearch(ev) {
+        ev.preventDefault()
+        onSetSearch(searchByTxt)
+    }
+
+    return <section className="search-filter flex">
+        <form className="search-form flex" onSubmit={onSubmitSearch}>
+            <input className="search-input" value={searchByTxt} onChange={handleChange} name="txt" type="text" placeholder="Search mail" />
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+}
+
+
+
+
+export function SideFilter({ filterBy, onSetFilter }) {
+    const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
+    // console.log('side filter: filterByToEdit', filterByToEdit)
+    
     useEffect(() => {
         onSetFilter(filterByToEdit)
     }, [filterByToEdit])
 
-    function handleChange(ev) {
+    function handleClick(ev) {
+        // console.log('ev.target', ev.target)
         const field = ev.target.name
         const value = ev.target.value
         setFilterByToEdit({ ...filterByToEdit, [field]: value })
     }
-    function onSubmitFilter(ev) {
-        ev.preventDefault()
-        onSetFilter(filterByToEdit)
-    }
-
-    
-
-    return <section className="search-filter flex">
-        <form className="search-form flex" onSubmit={onSubmitFilter}>
-            <input className="search-input" value={filterByToEdit.txt} onChange={handleChange} name="txt" type="text" placeholder="Search mail"  />
-            <button type="submit">Submit</button>
-        </form>
-    </section>
-}
-
-export function SideFilter({ onSetFilter, filterBy }) {
-    const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
-
-    useEffect(() => {
-        onSetFilter(filterByToEdit)
-    }, [filterByToEdit])
-
-    
 
     
 
     return <section className="folder-filter">
         <ul className="side-bar-items clean-list">
-            <li className="side-bar-item"><button onClick={() => setFilterByToEdit({ ...filterByToEdit, folder: 'inbox' })}>Inbox</button></li>
-            <li className="side-bar-item"><button onClick={() => setFilterByToEdit({ ...filterByToEdit, folder: 'starred' })}>Starred</button></li>
-            <li className="side-bar-item"><button onClick={() => setFilterByToEdit({ ...filterByToEdit, folder: 'sent' })}>Sent</button></li>
-            <li className="side-bar-item"><button onClick={() => setFilterByToEdit({ ...filterByToEdit, folder: 'drafts' })}>Drafts</button></li>
-            <li className="side-bar-item"><button onClick={() => setFilterByToEdit({ ...filterByToEdit, folder: 'trash' })}>Trash</button></li>
+            <li className="side-bar-item"><button name="folder" value={'inbox'} onClick={handleClick}>Inbox</button></li>
+            <li className="side-bar-item"><button name="folder" value={'starred'} onClick={handleClick}>Starred</button></li>
+            <li className="side-bar-item"><button name="folder" value={'sent'} onClick={handleClick}>Sent</button></li>
+            <li className="side-bar-item"><button name="folder" value={'drafts'} onClick={handleClick}>Drafts</button></li>
+            <li className="side-bar-item"><button name="folder" value={'trash'} onClick={handleClick}>Trash</button></li>
         </ul>
     </section>
 }

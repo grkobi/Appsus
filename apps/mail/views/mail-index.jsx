@@ -10,13 +10,14 @@ import { ComposeModal } from "../cmps/compose-modal.jsx"
 export function MailIndex() {
     const [mails, setMails] = useState([])
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+    const [searchBy, setSearchBy] = useState('')
     const [isComposeModalOpen, setComposeModalOpen] = useState(false)
     console.log('mails', mails)
-
-
+    console.log('filterBy', filterBy)
+   
     useEffect(() => {
         loadMails()
-    }, [filterBy])
+    }, [filterBy, searchBy])
 
     function loadMails() {
         mailService.query(filterBy)
@@ -75,6 +76,11 @@ export function MailIndex() {
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, ...filterBy }))
     }
 
+    function onSetSearch(searchBy) {
+        setSearchBy(searchBy)
+        setFilterBy(prevFilterBy => ({ ...prevFilterBy, txt: searchBy }))
+    }
+
     if (!mails) return <div>Loading...</div>
 
     return <section className="mail-index">
@@ -82,7 +88,7 @@ export function MailIndex() {
             <img src="assets/img/mailIcons/asset24.png" />
             <span>Compose</span>
         </button>
-        <SearchFilter onSetFilter={onSetFilter} filterBy={filterBy} />
+        <SearchFilter onSetSearch={onSetSearch} searchBy={searchBy} />
         <SideFilter onSetFilter={onSetFilter} filterBy={filterBy} />
         <MailList mails={mails} onDeleteMail={onDeleteMail} onToggle={toggles} />
         {isComposeModalOpen && (

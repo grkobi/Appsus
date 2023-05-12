@@ -91,33 +91,35 @@ export const mailService = {
 
 function getDefaultFilter() {
     return {
-        folder: '',
+        folder: 'inbox',
         txt: '',
-        isRead: false, // (optional property, if missing: show all)
-        isStarred: false, // (optional property, if missing: show all)
-        lables: ['important', 'romantic'] // has any of the labels
+        isRead: '', // (optional property, if missing: show all)
+        isStarred: '', // (optional property, if missing: show all)
+        lables: [] // has any of the labels
     }
 }
 
 function query(filterBy = {}) {
     // return storageService.query(EMAIL_KEY).then(emails => { return emails })
     return storageService.query(EMAIL_KEY).then(emails => {
-        if (filterBy.txt) {
-            emails = emails.filter(email => {
-                return email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
-                    email.body.toLowerCase().includes(filterBy.txt.toLowerCase()) 
-            })
-        }
+
         if (filterBy.folder) {
             if (filterBy.folder === 'starred') {
                 emails = emails.filter(email => {
-                    return email.isStared
+                    return email.isStarred
                 })
             } else {
             emails = emails.filter(email => {
                 return email.folder === filterBy.folder
             })}
         }
+        if (filterBy.txt) {
+            emails = emails.filter(email => {
+                return ((email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                    email.body.toLowerCase().includes(filterBy.txt.toLowerCase())) && email.folder === filterBy.folder) 
+            })
+        }
+        
         // if (filterBy.isStared) {
         //     emails = emails.filter(email => {
         //         return email.isStared === filterBy.isStared
