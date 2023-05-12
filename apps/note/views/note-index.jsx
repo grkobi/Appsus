@@ -3,14 +3,16 @@ const { useState, useEffect } = React
 import { NoteAdd } from "../cmps/note-add.jsx"
 import { NoteList } from "../cmps/note-list.jsx"
 import { noteService } from "../services/note.service.js"
+import { NoteFilter } from "../cmps/note-filter.jsx"
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
+    const [newNote, setNewNote] = useState({})
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
 
     useEffect(() => {
         loadNotes()
-    }, [filterBy])
+    }, [filterBy, newNote])
 
     const onSetFilter = (filterBy) => {
         setFilterBy(filterBy)
@@ -31,7 +33,11 @@ export function NoteIndex() {
         }
 
         )
-        loadNotes()
+    }
+
+    function onNewNote(note) {
+        setNewNote(note)
+        onAddNote(note)
     }
 
     function onAddNote(newNote) {
@@ -41,21 +47,18 @@ export function NoteIndex() {
                 notes.push(note)
                 const updatedNotes = notes
                 setNotes(updatedNotes)
+                loadNotes()
             })
     }
 
 
-
     return (
         <section className="notes-index">
-            {/* <NoteFilter onSetFilter={onSetFilter} filterBy={filterBy} /> */}
-            {/* <form className="new-note" onSubmit={onAddNote}>
-                <label htmlFor="txt"></label>
-                <input value={txt} type="text" name="txt" id="txt" placeholder="Write a note" />
-                <button>Add Note</button>
-            </form> */}
+            <NoteAdd onNewNote={onNewNote} newNote={newNote} />
+            <NoteFilter onSetFilter={onSetFilter} filterBy={filterBy} />
             <NoteList notes={notes} onRemoveNote={onRemoveNote} />
-            <NoteAdd onAddNote={onAddNote} />
+            {/* <NoteAdd onAddNote={onAddNote} notes={notes} /> */}
+            {/* <NoteAdd onNewNote={onNewNote} newNote={newNote} /> */}
         </section>
     )
 }
