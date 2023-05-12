@@ -30,8 +30,6 @@ export function SearchFilter({ searchBy, onSetSearch }) {
 }
 
 
-
-
 export function SideFilter({ filterBy, onSetFilter }) {
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
     // console.log('side filter: filterByToEdit', filterByToEdit)

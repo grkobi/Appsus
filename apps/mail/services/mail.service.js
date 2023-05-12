@@ -53,6 +53,32 @@ const gEmails = [{
     removedAt: null,
     from: 'momo@momo.com',
     to: 'user@appsus.com',
+    folder: 'trash',
+    labels: []
+},
+{
+    id: 'e105',
+    subject: 'Miss you!',
+    body: 'Would love to catch up sometimes',
+    isRead: false,
+    isStarred: true,
+    sentAt: 1551133930594,
+    removedAt: null,
+    from: 'bobik@cmail.com',
+    to: 'user@appsus.com',
+    folder: 'inbox',
+    labels: []
+},
+{
+    id: 'e104',
+    subject: 'Miss you!',
+    body: 'Would love to catch up sometimes',
+    isRead: false,
+    isStarred: false,
+    sentAt: 1551133930594,
+    removedAt: null,
+    from: 'user@appsus.com',
+    to: '' ,
     folder: 'drafts',
     labels: []
 },
@@ -64,8 +90,8 @@ const gEmails = [{
     isStarred: true,
     sentAt: 1551133930594,
     removedAt: null,
-    from: 'momo@momo.com',
-    to: 'user@appsus.com',
+    from: 'user@appsus.com',
+    to: '',
     folder: 'drafts',
     labels: []
 }]
@@ -85,6 +111,8 @@ export const mailService = {
     toggleIsRead,
     toggleIsStarred,
     toggleIsImportant,
+    getLoggedinUser,
+    saveEmail
 }
 
 
@@ -97,6 +125,26 @@ function getDefaultFilter() {
         isStarred: '', // (optional property, if missing: show all)
         lables: [] // has any of the labels
     }
+}
+
+function getEmptyEmail() {
+    return {
+        id: '',
+        subject: '',
+        body: '',
+        isRead: false,
+        isStarred: false,
+        sentAt: Date.now(),
+        removedAt: null,
+        from: 'user@appsus.com',
+        to: '' ,
+        folder: 'inbox',
+        labels: []
+    }
+}
+
+function getLoggedinUser() {
+    return loggedinUser
 }
 
 function query(filterBy = {}) {
@@ -140,22 +188,19 @@ function _createEmails() {
         utilService.saveToStorage(EMAIL_KEY, gEmails)
     }
 }
-function getEmptyEmail() {
-    return {
-        id: '',
-        subject: '',
-        body: '',
-        isRead: false,
-        sentAt: Date.now(),
-        removedAt: null,
-        from: 'momo@momo.com',
-        to: 'user@appsus.com',
-        folder: 'inbox',
-    }
-}
+
 
 function deleteEmail(emailId) {
     return storageService.remove(EMAIL_KEY, emailId)
+}
+
+function saveEmail(email) {
+    if(!email.to) return Promise.reject('Recepient is missing')
+    if (email.id) {
+        return storageService.put(EMAIL_KEY, email)
+    } else {
+        return storageService.post(EMAIL_KEY, email)
+    }
 }
 
 function toggleIsRead(emailId) {

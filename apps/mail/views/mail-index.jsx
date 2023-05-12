@@ -6,6 +6,8 @@ import { mailService } from "../services/mail.service.js"
 import { SearchFilter } from "../cmps/mail-filter.jsx"
 import { SideFilter } from "../cmps/mail-filter.jsx"
 import { ComposeModal } from "../cmps/compose-modal.jsx"
+import { UserMsg } from "../../../cmps/user-msg.jsx"
+import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 export function MailIndex() {
     const [mails, setMails] = useState([])
@@ -16,6 +18,8 @@ export function MailIndex() {
     console.log('filterBy', filterBy)
    
     useEffect(() => {
+        // showErrorMsg('Error message!')
+        // showSuccessMsg('success message!')
         loadMails()
     }, [filterBy, searchBy])
 
@@ -91,7 +95,7 @@ export function MailIndex() {
         <SearchFilter onSetSearch={onSetSearch} searchBy={searchBy} />
         <SideFilter onSetFilter={onSetFilter} filterBy={filterBy} />
         <MailList mails={mails} onDeleteMail={onDeleteMail} onToggle={toggles} />
-        {isComposeModalOpen && (
+        {/* {isComposeModalOpen && (
             <div className="compose-modal">
                 <form className="compose-form flex column">
                     <input type="text" placeholder="To" />
@@ -101,11 +105,12 @@ export function MailIndex() {
                 </form>
                 <button onClick={() => setComposeModalOpen(false)}>Close</button>
             </div>
-        )}
-
-        {/* {isComposeModalOpen && ( *
-        <ComposeModal onClose={() => setComposeModalOpen(false)} />
         )} */}
+
+        {isComposeModalOpen && ( 
+        <ComposeModal onClose={() => setComposeModalOpen(false)} />
+        )}
+      {/* <UserMsg /> */}
 
     </section>
 }

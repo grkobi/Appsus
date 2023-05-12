@@ -1,21 +1,34 @@
 .user-msg {
-    background-color: lightgray;
+    background-color: var(---clrMailListBg);
     padding: 1em;
+    border-radius: 1em;
+    box-shadow: inset 0 0 1em rgb(191, 221, 249);
     position: absolute;
+    height: 2rem;
     top: 1em;
-    right: 1em;
+    right: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .user-msg.success {
-    background-color: lightgreen;
+    /* background-color: lightgreen; */
+    color: var(--clrMailFolderActiveTxt);
+    font-size: small;
 }
 
 .user-msg.error {
-    background-color: lightpink;
+    /* background-color: lightpink; */
+    color: red;
+    font-size: small;
 }
 
 
 .user-msg button{
     float: right;
     margin: 1em;
+    border-style: none;
+    background-color: transparent;
+    color: inherit;
 }
