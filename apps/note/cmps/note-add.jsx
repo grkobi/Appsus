@@ -26,21 +26,24 @@ export function NoteAdd({ onNewNote, newNote }) {
     return (
 
         <form onSubmit={handleSubmitNote} className="flex create-form">
-            <section className="note-creator-container">
+            <section className="add-note-container">
                 <div>
-                    <input type="text"
+
+                <textarea className="textarea-add-note" name="txt" placeholder="Enter text..."/>
+
+                    {/* <input type="text"
                         id="txt"
                         name="txt"
                         placeholder={noteType === 'Enter text'}
-                    />
+                    /> */}
                     {/* {noteType !== 'note-txt' ? <input className="note-data" placeholder={PLACEHOLDER[noteType]} type='text' id='noteData' name='noteData' /> : null} */}
                 </div>
                 <div className="options-container">
-                    <label htmlFor="note-txt"></label>
+                    <label htmlFor="note-txt"><span class="material-symbols-outlined"></span></label>
                     <input type="radio" name="note-type" id="note-txt" />
                 </div>
 
-                <button>add note</button>
+            <button className="save-note-btn" >Save note</button>
             </section>
         </form>
         // <div>

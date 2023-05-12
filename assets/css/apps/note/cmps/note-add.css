@@ -2,12 +2,39 @@
     justify-content: center;
 }
 
-.note-creator-container {
+.add-note-container {
     display: flex;
     padding: 0.7rem 1rem;
     gap: 10px;
-    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
-    border-radius: 1.5rem;
+    box-shadow: rgb(0 0 0 / 30%) 0px 3px 8px;
+    background-color: #E1CBDC;
+    border-radius: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.options-container{
+    display: flex;
+    align-items: baseline;
+}
+
+.options-container label{
+    padding-top: 2px;
+}
+
+/* .create-form input {
+    padding: 0.5rem;
+    border: none;
+} */
+
+.create-form input:focus-visible {
+    outline: none;
+}
+
+.save-note-btn {
+    background-color: rgb(243, 233, 233);
+    border: none;
+    padding: 2px 2px 0 2px;
 }
