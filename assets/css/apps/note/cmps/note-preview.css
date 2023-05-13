@@ -9,6 +9,7 @@
     break-inside: avoid-column;
     margin: 20px;
     overflow-wrap: break-word;
+    min-height: 100px;
 }
 
 .img-preview {

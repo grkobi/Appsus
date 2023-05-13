@@ -1,1 +1,21 @@
  /* home */
+
+ *{
+    font-family: roboto;
+ }
+
+ .home{
+    display:block;
+    background-color: lightcyan;
+    height: 100vh;
+ }
+
+ .home h1{
+    position:relative;
+    top: 40%;
+    left: 25%;
+    font-weight: bold;
+    font-size: 4rem;
+ }
+
+ html {margin: 0; height: 100%; overflow: hidden}

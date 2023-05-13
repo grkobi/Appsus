@@ -61,9 +61,6 @@ function query(filterBy = {}) {
         return notes.filter((note) => {
             let passed = true
             let completeText = note.info.title + ' ' + note.info.txt
-            console.log('filterBy.text', filterBy.text)
-            console.log('note.info.txt', note.info.txt)
-            console.log('note.info.title', note.info.title)
             if (filterBy.text && (note.info.txt || note.info.title) && !completeText.toLowerCase().includes(filterBy.text)) {
                 passed = false
             }
