@@ -28,7 +28,7 @@ const gEmails = [{
     from: 'user@appsus.com',
     to: 'yoyo@momo.com',
     folder: 'sent',
-    labels: [ 'romantic']
+    labels: ['romantic']
 },
 {
     id: 'e103',
@@ -78,7 +78,7 @@ const gEmails = [{
     sentAt: 1551133930594,
     removedAt: null,
     from: 'user@appsus.com',
-    to: '' ,
+    to: '',
     folder: 'drafts',
     labels: []
 },
@@ -115,8 +115,9 @@ export const mailService = {
     saveEmail,
     moveToTrash,
     getEmail,
-    receiveNewEmail
-    
+    receiveNewEmail,
+    getMailsCounts
+
 }
 
 
@@ -141,7 +142,7 @@ function getEmptyEmail() {
         sentAt: Date.now(),
         removedAt: null,
         from: 'user@appsus.com',
-        to: '' ,
+        to: '',
         folder: 'inbox',
         labels: []
     }
@@ -154,39 +155,65 @@ function getLoggedinUser() {
 }
 
 function query(filterBy = {}) {
-    // return storageService.query(EMAIL_KEY).then(emails => { return emails })
     return storageService.query(EMAIL_KEY).then(emails => {
 
         if (filterBy.folder) {
             if (filterBy.folder === 'starred') {
                 emails = emails.filter(email => {
                     return email.isStarred && (email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
-                    email.body.toLowerCase().includes(filterBy.txt.toLowerCase()))
+                        email.body.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                        email.to.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                        email.from.toLowerCase().includes(filterBy.txt.toLowerCase()))
                 })
             } else
-            if (filterBy.folder === 'inbox') {
-                emails = emails.filter(email => {
-                    return email.to === loggedinUser.email && (email.folder !== 'trash') && (email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
-                    email.body.toLowerCase().includes(filterBy.txt.toLowerCase()))
-                })
-            }
-            else {
-            emails = emails.filter(email => {
-                return email.folder === filterBy.folder && (email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
-                email.body.toLowerCase().includes(filterBy.txt.toLowerCase()))
-            })}
+                if (filterBy.folder === 'inbox') {
+                    emails = emails.filter(email => {
+                        return email.to === loggedinUser.email && (email.folder !== 'trash') &&
+                         (email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                        email.body.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                        email.to.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                        email.from.toLowerCase().includes(filterBy.txt.toLowerCase()))
+                    })
+                }
+                else {
+                    emails = emails.filter(email => {
+                        return email.folder === filterBy.folder && (email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                        email.body.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                        email.to.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                        email.from.toLowerCase().includes(filterBy.txt.toLowerCase()))
+                    })
+                }
         }
-        // if (filterBy.txt) {
-        //     emails = emails.filter(email => {
-        //         return ((email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
-        //             email.body.toLowerCase().includes(filterBy.txt.toLowerCase())) && email.folder === filterBy.folder) 
-        //     })
-        // }
-       
+        
+
         return emails
     })
 
 
+}
+
+function getMailsCounts() {
+    const counts = {
+        inbox: 0,
+        sent: 0,
+        trash: 0,
+        starred: 0,
+        draft: 0,
+    }
+
+    return storageService.query(EMAIL_KEY).then(emails => {
+
+        emails.forEach((mail) => {
+            if (mail.folder === 'inbox' || (mail.to === mailService.getLoggedinUser().email && mail.folder !== 'drafts' && mail.folder !== 'trash')) counts.inbox++
+            else if (mail.folder === 'sent') counts.sent++
+            else if (mail.folder === 'trash') counts.trash++
+
+            if (mail.isStarred) counts.starred++
+            if (mail.folder === 'draft') counts.draft++
+        })
+
+        return counts
+    })
 }
 
 
@@ -201,7 +228,7 @@ function _createEmails() {
 
 function receiveNewEmail() {
     let email = getEmptyEmail()
-    email.from ='spam@spam.com'
+    email.from = 'spam@spam.com'
     email.subject = 'You won 1,000,000$'
     email.body = 'Please send us your credit card number'
     email.sentAt = Date.now()
@@ -230,7 +257,7 @@ function deleteEmail(emailId) {
 }
 
 function saveEmail(email) {
-    if(!email.to) return Promise.reject('Recepient is missing')
+    if (!email.to) return Promise.reject('Recepient is missing')
     if (email.id) {
         return storageService.put(EMAIL_KEY, email)
     } else {
@@ -267,10 +294,4 @@ function _createEmail() {
 
 }
 
-// const criteria = {
-//     status: 'inbox/sent/trash/draft',
-//     txt: 'puki', // no need to support complex text search
-//     isRead: true, // (optional property, if missing: show all)
-//     isStared: true, // (optional property, if missing: show all)
-//     lables: ['important', 'romantic'] // has any of the labels
-// }
+

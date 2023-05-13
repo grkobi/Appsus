@@ -33,6 +33,10 @@
      color: var(--clrSideBarTxt);
  }
 
+    .mail-index .compose-btn:hover {
+        box-shadow:  0 0 1em #d9e4f0;
+    }
+
  .compose-btn img {
      width: 1.5rem;
      height: 1.5rem;

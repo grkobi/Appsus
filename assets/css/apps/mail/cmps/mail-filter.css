@@ -51,3 +51,7 @@
 .folder-filter .side-bar-items button.active {
     background-color: var(--clrMailFolderActiveBg);
 }
+
+.folder-filter .side-bar-items button:hover:not(.active) {
+    background-color: #d9e4f0;
+}
