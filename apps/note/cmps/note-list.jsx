@@ -2,9 +2,6 @@ import { NotePreview } from "./note-preview.jsx"
 
 export function NoteList({ notes, onRemoveNote, onChangeColor }) {
 
-    // function dynNoteCmp(note){
-    //    if (type === 'noteVide') return <NoteVidPreview/>
-    // }
     return (
         <div className="notes-list">
             {notes.map(note => 

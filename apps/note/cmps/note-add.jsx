@@ -26,14 +26,6 @@ export function NoteAdd({ onNewNote, newNote }) {
 
                     <textarea className="textarea-add-note" name="txt" placeholder="Enter your note..." />
 
-                    {/* <input type="text"
-                        id="txt"
-                        name="txt"
-                        placeholder={noteType === 'Enter text'}
-                    /> */}
-
-                    {/* {noteType !== 'note-txt' ? <input className="note-data" placeholder={PLACEHOLDER[noteType]} type='text' id='noteData' name='noteData' /> : null} */}
-
                 </div>
                 <button className="save-note-btn" ><i class="fa-solid fa-plus"></i></button>
                 <div className="options-container">
