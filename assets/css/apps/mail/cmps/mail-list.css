@@ -34,6 +34,7 @@
 .mail-list-item:hover .delete-btn,.mail-list-item:hover .read-unread-btn{
     display: block;
     background-color: #e3e8ed;
+    cursor: pointer;
 }
 
 .mail-list-item:hover .sentAt{
