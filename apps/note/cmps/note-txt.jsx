@@ -1,7 +1,7 @@
 export function NoteTxt({ note }) {
     // console.log(note)
     return (
-        <p>
+        <p className="note-text">
             {note.info.txt}
         </p>
     )

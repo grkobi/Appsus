@@ -34,7 +34,11 @@
 }
 
 .save-note-btn {
-    background-color: rgb(243, 233, 233);
+    background-color: rgb(240, 187, 187);
     border: none;
     padding: 2px 2px 0 2px;
+}
+
+.save-note-btn:hover {
+    background-color: rgb(250, 112, 112);
 }

@@ -32,8 +32,6 @@ export function NotePreview({ note, onRemoveNote }) {
                 return <div>Unable to find a note component {type}</div>
         }
     }
-    const currBgColor = note.style.backgroundColor
-    console.log('currBgColor ', currBgColor)
 
     return (
         <section className='note-preview' style={{ backgroundColor: note.style.backgroundColor ? note.style.backgroundColor : '#00DDFF' }}>

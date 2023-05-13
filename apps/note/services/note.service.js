@@ -57,12 +57,14 @@ export const noteService = {
 }
 
 function query(filterBy = {}) {
-    console.log('filterBy', filterBy)
     return storageService.query(NOTE_KEY).then(notes => {
         return notes.filter((note) => {
             let passed = true
-            let completeText = note
-            if (filterBy.text && note.info.txt && !filterBy.text.includes(note.info.txt)) {
+            let completeText = note.info.title + ' ' + note.info.txt
+            console.log('filterBy.text', filterBy.text)
+            console.log('note.info.txt', note.info.txt)
+            console.log('note.info.title', note.info.title)
+            if (filterBy.text && (note.info.txt || note.info.title) && !completeText.toLowerCase().includes(filterBy.text)) {
                 passed = false
             }
             if (filterBy.type && note.type && filterBy.type !== note.type) {
@@ -98,7 +100,7 @@ function save(note) {
 }
 
 function getDefaultFilter() {
-    return { title: '', maxPageCount: '', language: '', maxPrice: '' }
+    return { title: '', text: '' }
 }
 
 // function _createNotes() {

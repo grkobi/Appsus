@@ -25,7 +25,7 @@ export function NoteFilter({ onFilterBy }) {
                 <option value='note-txt'>Text</option>
                 <option value='note-img'>Image</option>
                 <option value='note-vid'>Video</option>
-                <option value='note-todos'> Todos</option>
+                <option value='note-todos'>Todos</option>
             </select>
         </section>
     )
