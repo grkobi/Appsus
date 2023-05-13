@@ -35,12 +35,15 @@ export function NoteAdd({ onNewNote, newNote }) {
                     {/* {noteType !== 'note-txt' ? <input className="note-data" placeholder={PLACEHOLDER[noteType]} type='text' id='noteData' name='noteData' /> : null} */}
 
                 </div>
+                <button className="save-note-btn" ><i class="fa-solid fa-plus"></i></button>
                 <div className="options-container">
-                    <label htmlFor="note-txt"><span className="material-symbols-outlined"></span></label>
-                    <input type="radio" name="note-type" id="note-txt" />
+                    <label htmlFor="note-txt"><i class="fa-solid fa-font"></i></label>
+                    <input type="radio" name="note-type" id="note-txt" defaultChecked />
+                    <label htmlFor="note-img"><i class="fa-solid fa-image"></i></label>
+                    <input type="radio" name="note-type" id="note-img" />
+                    <label htmlFor="note-video"><i class="fa-solid fa-video"></i></label>
+                    <input type="radio" name="note-type" id="note-video" />
                 </div>
-
-                <button className="save-note-btn" >Save note</button>
             </section>
         </form>
     )
