@@ -1,5 +1,5 @@
 export function NoteImg({ note }) {
-    console.log(note)
+    // console.log(note)
     return (
         <div className="note-img" >
             <h4>{note.info.title}</h4>

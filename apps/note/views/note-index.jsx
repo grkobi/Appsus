@@ -14,8 +14,10 @@ export function NoteIndex() {
         loadNotes()
     }, [filterBy, newNote])
 
-    const onSetFilter = (filterBy) => {
-        setFilterBy(filterBy)
+    function onFilterBy(filter) {
+        setFilterBy({ ...filterBy, ...filter })
+        loadNotes()
+
     }
 
     function loadNotes() {
@@ -31,7 +33,6 @@ export function NoteIndex() {
             setNotes(updatedNotes)
             loadNotes()
         }
-
         )
     }
 
@@ -55,7 +56,7 @@ export function NoteIndex() {
     return (
         <section className="notes-index">
             <NoteAdd onNewNote={onNewNote} newNote={newNote} />
-            <NoteFilter onSetFilter={onSetFilter} filterBy={filterBy} />
+            <NoteFilter onFilterBy={onFilterBy} />
             <NoteList notes={notes} onRemoveNote={onRemoveNote} />
             {/* <NoteAdd onAddNote={onAddNote} notes={notes} /> */}
             {/* <NoteAdd onNewNote={onNewNote} newNote={newNote} /> */}

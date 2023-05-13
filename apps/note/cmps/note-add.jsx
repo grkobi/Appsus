@@ -12,7 +12,8 @@ export function NoteAdd({ onNewNote, newNote }) {
         ev.preventDefault()
         const { target } = ev;
         const textInput = target.txt.value;
-        const noteData = target.noteData ? target.noteData.value : '';
+        const noteData = target.value ? target.value : '';
+        console.log('target.notData', target.noteData)
         target.txt.value = ''
         if (noteData) target.noteData.value = ''
         const note = noteService.createNote(noteType, textInput, noteData);
@@ -29,21 +30,23 @@ export function NoteAdd({ onNewNote, newNote }) {
             <section className="add-note-container">
                 <div>
 
-                <textarea className="textarea-add-note" name="txt" placeholder="Enter text..."/>
+                    <textarea className="textarea-add-note" name="txt" placeholder="Enter your note..." />
 
                     {/* <input type="text"
                         id="txt"
                         name="txt"
                         placeholder={noteType === 'Enter text'}
                     /> */}
+
                     {/* {noteType !== 'note-txt' ? <input className="note-data" placeholder={PLACEHOLDER[noteType]} type='text' id='noteData' name='noteData' /> : null} */}
+
                 </div>
                 <div className="options-container">
-                    <label htmlFor="note-txt"><span class="material-symbols-outlined"></span></label>
+                    <label htmlFor="note-txt"><span className="material-symbols-outlined"></span></label>
                     <input type="radio" name="note-type" id="note-txt" />
                 </div>
 
-            <button className="save-note-btn" >Save note</button>
+                <button className="save-note-btn" >Save note</button>
             </section>
         </form>
         // <div>
