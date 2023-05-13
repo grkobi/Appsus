@@ -41,6 +41,19 @@ const gNotes = [{
         url: 'https://img.jamieoliver.com/home/wp-content/uploads/features-import/2016/04/How_to_make_coffee_22548_preview.jpg',
         title: "Remember what's important"
     }
+},
+{
+    id: 'n104',
+    createdAt: 1125434512239,
+    type: 'note-img',
+    isPinned: true,
+    style: {
+        backgroundColor: '#DAA06D'
+    },
+    info: {
+        url: 'https://static01.nyt.com/images/2023/05/07/multimedia/07nba-playoffs-curry-james-02-tqvm/07nba-playoffs-curry-james-02-tqvm-superJumbo-v3.jpg',
+        title: "Steph"
+    }
 }
 
 ]
