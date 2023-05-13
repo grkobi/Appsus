@@ -1,6 +1,6 @@
 import { NotePreview } from "./note-preview.jsx"
 
-export function NoteList({ notes, onRemoveNote }) {
+export function NoteList({ notes, onRemoveNote, onChangeColor }) {
 
     // function dynNoteCmp(note){
     //    if (type === 'noteVide') return <NoteVidPreview/>

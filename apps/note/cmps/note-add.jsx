@@ -13,19 +13,13 @@ export function NoteAdd({ onNewNote, newNote }) {
         const { target } = ev;
         const textInput = target.txt.value;
         const noteData = target.value ? target.value : '';
-        console.log('target.notData', target.noteData)
         target.txt.value = ''
         if (noteData) target.noteData.value = ''
         const note = noteService.createNote(noteType, textInput, noteData);
-        console.log('NOTE', note)
         onNewNote(note)
     }
 
-
-
-
     return (
-
         <form onSubmit={handleSubmitNote} className="flex create-form">
             <section className="add-note-container">
                 <div>
@@ -49,11 +43,5 @@ export function NoteAdd({ onNewNote, newNote }) {
                 <button className="save-note-btn" >Save note</button>
             </section>
         </form>
-        // <div>
-        //     <input ref={inputRef} type="text" id="note" placeholder="Type a new note"></input>
-        //     <button onClick={() => onAddNote(inputRef.current)}>Add note</button>
-        //     {console.log('useRef: ', inputRef.current)}
-        // </div>
-
     )
 }
