@@ -19,11 +19,7 @@ export function NoteAdd({ onNewNote, newNote }) {
         onNewNote(note)
     }
 
-
-
-
     return (
-
         <form onSubmit={handleSubmitNote} className="flex create-form">
             <section className="add-note-container">
                 <div>
@@ -47,11 +43,5 @@ export function NoteAdd({ onNewNote, newNote }) {
                 <button className="save-note-btn" >Save note</button>
             </section>
         </form>
-        // <div>
-        //     <input ref={inputRef} type="text" id="note" placeholder="Type a new note"></input>
-        //     <button onClick={() => onAddNote(inputRef.current)}>Add note</button>
-        //     {console.log('useRef: ', inputRef.current)}
-        // </div>
-
     )
 }

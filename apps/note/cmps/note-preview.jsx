@@ -10,15 +10,14 @@ import { utilService } from "../../../services/util.service.js"
 export function NotePreview({ note, onRemoveNote }) {
 
     const { type } = note
-    const [color, setColor] = useState()
+    const [color, setColor] = useState('#DE3163')
 
     const click = color => {
-        color = utilService.getRandomColor()
+        note.style.backgroundColor = utilService.getRandomColor()
         setColor(color)
     }
 
     useEffect(() => {
-        note.style.backgroundColor = color
     }, [color])
 
     function typeToDisplay() {
@@ -33,6 +32,8 @@ export function NotePreview({ note, onRemoveNote }) {
                 return <div>Unable to find a note component {type}</div>
         }
     }
+    const currBgColor = note.style.backgroundColor
+    console.log('currBgColor ', currBgColor)
 
     return (
         <section className='note-preview' style={{ backgroundColor: note.style.backgroundColor ? note.style.backgroundColor : '#00DDFF' }}>
@@ -40,7 +41,7 @@ export function NotePreview({ note, onRemoveNote }) {
             {/* <input className="btn-color" type="color" value="#ffffff" onChange={() => { this.setColor(event) }}></input> */}
             {/* <button  onClick={() => onChangeColor(note.id)}><i className="fa-solid fa-palette"></i></button> */}
             <button onClick={() => onRemoveNote(note.id)} className="remove-note"><i class="fa-solid fa-trash"></i></button>
-            <button onClick={() => click(["#F08080"])} className="change-color"><i className="fa-solid fa-palette"></i></button>
+            <button onClick={() => click(["#F08080","#FFAC1C","blue"])} className="change-color"><i className="fa-solid fa-palette"></i></button>
         </section>
     )
 }

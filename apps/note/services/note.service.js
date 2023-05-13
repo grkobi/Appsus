@@ -90,7 +90,6 @@ function remove(noteId) {
 }
 
 function save(note) {
-    console.log('note note ID', note)
     if (note.id) {
         return storageService.put(NOTE_KEY, note)
     } else {
@@ -124,7 +123,6 @@ function getDefaultFilter() {
 // }
 
 function createNote(type, info, style) {
-    console.log('createnote', info)
     return {
         id: '',
         type,
