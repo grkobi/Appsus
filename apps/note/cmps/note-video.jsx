@@ -6,7 +6,7 @@ export function NoteVideo({ note }) {
         <React.Fragment>
             <div className="note-video">
                 <p>{note.info.title}</p>
-                <iframe width="200" height="100" src={note.info.url}></iframe>
+                <iframe width="350" height="150" src={note.info.url}></iframe>
             </div>
         </React.Fragment>
     )

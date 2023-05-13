@@ -60,16 +60,16 @@ function query(filterBy = {}) {
     return storageService.query(NOTE_KEY).then(notes => {
         return notes.filter((note) => {
             let passed = true
-            let completeText = note
-            console.log('filterBy.text',filterBy.text)
-            console.log('note.info.txt',note.info.txt)
-            if (filterBy.text && note.info.txt && !note.info.txt.toLowerCase().includes(filterBy.text)) {
+            let completeText = note.info.title + ' ' + note.info.txt
+            console.log('filterBy.text', filterBy.text)
+            console.log('note.info.txt', note.info.txt)
+            console.log('note.info.title', note.info.title)
+            if (filterBy.text && (note.info.txt || note.info.title) && !completeText.toLowerCase().includes(filterBy.text)) {
                 passed = false
             }
             if (filterBy.type && note.type && filterBy.type !== note.type) {
                 passed = false
             }
-            console.log('passed', passed)
             return passed
         })
     })
