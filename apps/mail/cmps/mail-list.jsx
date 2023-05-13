@@ -11,10 +11,7 @@ export function MailList({ mails, onDeleteMail, onToggle }) {
     const [areMailDetailsOpen, setAreMailDetailsOpen] = useState(false)
     const [mailDetails, setMailDetails] = useState(null)
 
-    // useEffect(() => {
-    //     console.log('mails', mails)
-    // }, [mails])
-
+    
 
     function openDetails(mail) {
         setMailDetails(mail)
