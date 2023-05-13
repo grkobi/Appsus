@@ -27,6 +27,19 @@
     height: 2.5em;
 }
 
+.mail-list-item .delete-btn,.read-unread-btn{
+    display: none;
+}
+
+.mail-list-item:hover .delete-btn,.mail-list-item:hover .read-unread-btn{
+    display: block;
+    background-color: #e3e8ed;
+}
+
+.mail-list-item:hover .sentAt{
+    display: none;
+}
+
 .mail-list-item:hover{
     border:1px solid var(--clrMailSideBarBg);
     box-shadow: inset 0 0 1em inherit;
