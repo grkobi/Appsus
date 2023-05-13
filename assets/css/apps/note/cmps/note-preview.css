@@ -9,4 +9,21 @@
     break-inside: avoid-column;
     margin: 20px;
     overflow-wrap: break-word;
-  }
+}
+
+.img-preview {
+    max-width: 20vw;
+    padding: 5vh
+}
+
+.remove-note {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+.change-color {
+    position: absolute;
+    right: 60px;
+    bottom: 15px; 
+}

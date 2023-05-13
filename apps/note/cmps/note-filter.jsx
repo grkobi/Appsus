@@ -14,11 +14,11 @@ export function NoteFilter({ onFilterBy }) {
     }
 
     return (
-        <div>
+        <section className="note-filter">
             <form className="text-filter-form" onSubmit={onSubmitFilter}>
                 <input className="input-filter" type="text" id="txt"
-                    name="txt" value={text} onChange={(ev) => setText(ev.target.value)} />
-                <button type="submit">Filter list</button>
+                    name="txt" value={text} onChange={(ev) => setText(ev.target.value)} placeholder="Search note" />
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
             <select onChange={onChangeType}>
                 <option value=''>All</option>
@@ -27,7 +27,7 @@ export function NoteFilter({ onFilterBy }) {
                 <option value='note-vid'>Video</option>
                 <option value='note-todos'> Todos</option>
             </select>
-        </div>
+        </section>
     )
 
 

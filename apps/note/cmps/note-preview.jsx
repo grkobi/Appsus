@@ -1,22 +1,26 @@
+const { useEffect, useState } = React
+
 import { NoteTxt } from "./note-txt.jsx"
 import { NoteImg } from "./note-img.jsx"
 import { NoteVideo } from "./note-video.jsx"
 
-// const typeToComponent = {
-//     txt: NoteTxt,
-//     img: NoteImg,
-//     video: NoteVideo,
-//     todo: NoteTodos
-// }
+import { utilService } from "../../../services/util.service.js"
+
 
 export function NotePreview({ note, onRemoveNote }) {
-    // const Component = typeToComponent[note.type]
-    // return (
-    //     <Component />
-    // )
 
     const { type } = note
-    console.log(note)
+    const [color, setColor] = useState()
+
+    const click = color => {
+        color = utilService.getRandomColor()
+        setColor(color)
+    }
+
+    useEffect(() => {
+        note.style.backgroundColor = color
+    }, [color])
+
     function typeToDisplay() {
         switch (type) {
             case "note-txt":
@@ -31,9 +35,12 @@ export function NotePreview({ note, onRemoveNote }) {
     }
 
     return (
-        <section className='note-preview'  style={{ backgroundColor: note.style.backgroundColor ? note.style.backgroundColor : '#00DDFF' }}>
-        {typeToDisplay()}
-        <button onClick={() => onRemoveNote(note.id)} className="remove-note">Delete</button>
+        <section className='note-preview' style={{ backgroundColor: note.style.backgroundColor ? note.style.backgroundColor : '#00DDFF' }}>
+            {typeToDisplay()}
+            {/* <input className="btn-color" type="color" value="#ffffff" onChange={() => { this.setColor(event) }}></input> */}
+            {/* <button  onClick={() => onChangeColor(note.id)}><i className="fa-solid fa-palette"></i></button> */}
+            <button onClick={() => onRemoveNote(note.id)} className="remove-note"><i class="fa-solid fa-trash"></i></button>
+            <button onClick={() => click(["#F08080"])} className="change-color"><i className="fa-solid fa-palette"></i></button>
         </section>
     )
 }

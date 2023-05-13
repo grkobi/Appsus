@@ -22,15 +22,28 @@ const gNotes = [{
     type: 'note-video',
     isPinned: true,
     style: {
-        backgroundColor: '#EB5406'
+        backgroundColor: '#F28C28'
     },
     info: {
         url: 'https://player.vimeo.com/video/255688717?h=4b15bf92a9',
         title: "The beautiful Myanmar"
+    }
+},
+{
+    id: 'n103',
+    createdAt: 1125434512229,
+    type: 'note-img',
+    isPinned: true,
+    style: {
+        backgroundColor: '#DAA06D'
     },
+    info: {
+        url: 'https://img.jamieoliver.com/home/wp-content/uploads/features-import/2016/04/How_to_make_coffee_22548_preview.jpg',
+        title: "Remember what's important"
+    }
+}
 
-
-}]
+]
 
 _createNotes()
 
@@ -48,6 +61,7 @@ function query(filterBy = {}) {
     return storageService.query(NOTE_KEY).then(notes => {
         return notes.filter((note) => {
             let passed = true
+            let completeText = note
             if (filterBy.text && note.info.txt && !filterBy.text.includes(note.info.txt)) {
                 passed = false
             }
