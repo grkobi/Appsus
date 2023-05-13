@@ -44,9 +44,19 @@ export const noteService = {
 }
 
 function query(filterBy = {}) {
+    console.log('filterBy', filterBy)
     return storageService.query(NOTE_KEY).then(notes => {
-            return notes
+        return notes.filter((note) => {
+            let passed = true
+            if (filterBy.text && note.info.txt && !filterBy.text.includes(note.info.txt)) {
+                passed = false
+            }
+            if (filterBy.type && note.type && filterBy.type !== note.type) {
+                passed = false
+            }
+            return passed
         })
+    })
 }
 
 function _createNotes() {
