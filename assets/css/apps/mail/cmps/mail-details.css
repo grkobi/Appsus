@@ -1,0 +1,55 @@
+.mail-details *{
+    margin: 0;
+}
+
+.mail-details .mail-details-header,.to,.from{
+    flex-grow: 1;
+}
+
+.body {
+    flex-grow: 10;
+}
+
+.mail-details .to,.from{
+    display: flex;
+    align-items: center;
+}
+
+.mail-details .body{
+    padding-block-start: 1rem;
+}
+
+.mail-details .mail-details-header {
+    background-color: var(--clrMailSideBarBg);
+    align-items: center;
+    gap: 1rem;
+    font-style: helvetica;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    color: var(--clrMailFolderActiveTxt);
+}
+
+.mail-details p {
+    padding-inline-start: 1rem;
+    border-bottom: 1px solid var(--clrMailSideBarBg);
+}
+
+.mail-details button{
+    margin: 0;
+    align-self: center;
+    border-style: none;
+    background-color: transparent;
+    color: var(--clrMailFolderActiveTxt);
+    padding-inline-end: 1em;
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.mail-details-header .subject {
+    font-size: 1.1rem;
+    font-weight: 500;
+    flex-grow: 1;
+    
+}
+
+

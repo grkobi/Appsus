@@ -6,8 +6,8 @@ const EMAIL_KEY = 'emailDB'
 
 const gEmails = [{
     id: 'e101',
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
+    subject: 'Hey there!',
+    body: 'Would like to see you soon',
     isRead: false,
     isStarred: false,
     sentAt: 1551133930594,
@@ -40,26 +40,26 @@ const gEmails = [{
     removedAt: null,
     from: 'momo@momo.com',
     to: 'user@appsus.com',
-    folder: 'trash',
+    folder: 'inbox',
     labels: ['important']
 },
 {
     id: 'e104',
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
+    subject: 'Interesting thinhgs',
+    body: 'Got some new info for you',
     isRead: false,
     isStarred: false,
     sentAt: 1551133930594,
     removedAt: null,
-    from: 'momo@momo.com',
+    from: 'zoho@momo.com',
     to: 'user@appsus.com',
-    folder: 'trash',
+    folder: 'inbox',
     labels: []
 },
 {
     id: 'e105',
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
+    subject: 'Miss you very much!',
+    body: 'Would love to catch up sometimes soon',
     isRead: false,
     isStarred: true,
     sentAt: 1551133930594,
@@ -72,7 +72,7 @@ const gEmails = [{
 {
     id: 'e106',
     subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
+    body: 'Let me know whne you are free',
     isRead: false,
     isStarred: false,
     sentAt: 1551133930594,
@@ -84,8 +84,8 @@ const gEmails = [{
 },
 {
     id: 'e107',
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
+    subject: 'Very important!',
+    body: 'Rainy whether today',
     isRead: false,
     isStarred: true,
     sentAt: 1551133930594,
@@ -112,7 +112,11 @@ export const mailService = {
     toggleIsStarred,
     toggleIsImportant,
     getLoggedinUser,
-    saveEmail
+    saveEmail,
+    moveToTrash,
+    getEmail,
+    receiveNewEmail
+    
 }
 
 
@@ -143,6 +147,8 @@ function getEmptyEmail() {
     }
 }
 
+// TODO: fix the logic. Folder has to be an array- folders. Since an email can be in several folders
+
 function getLoggedinUser() {
     return loggedinUser
 }
@@ -154,26 +160,29 @@ function query(filterBy = {}) {
         if (filterBy.folder) {
             if (filterBy.folder === 'starred') {
                 emails = emails.filter(email => {
-                    return email.isStarred
+                    return email.isStarred && (email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                    email.body.toLowerCase().includes(filterBy.txt.toLowerCase()))
                 })
-            } else {
+            } else
+            if (filterBy.folder === 'inbox') {
+                emails = emails.filter(email => {
+                    return email.to === loggedinUser.email && (email.folder !== 'trash') && (email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                    email.body.toLowerCase().includes(filterBy.txt.toLowerCase()))
+                })
+            }
+            else {
             emails = emails.filter(email => {
-                return email.folder === filterBy.folder
+                return email.folder === filterBy.folder && (email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                email.body.toLowerCase().includes(filterBy.txt.toLowerCase()))
             })}
         }
-        if (filterBy.txt) {
-            emails = emails.filter(email => {
-                return ((email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
-                    email.body.toLowerCase().includes(filterBy.txt.toLowerCase())) && email.folder === filterBy.folder) 
-            })
-        }
-        
-        // if (filterBy.isStared) {
+        // if (filterBy.txt) {
         //     emails = emails.filter(email => {
-        //         return email.isStared === filterBy.isStared
+        //         return ((email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+        //             email.body.toLowerCase().includes(filterBy.txt.toLowerCase())) && email.folder === filterBy.folder) 
         //     })
         // }
-
+       
         return emails
     })
 
@@ -190,7 +199,33 @@ function _createEmails() {
 }
 
 
+function receiveNewEmail() {
+    let email = getEmptyEmail()
+    email.from ='spam@spam.com'
+    email.subject = 'You won 1,000,000$'
+    email.body = 'Please send us your credit card number'
+    email.sentAt = Date.now()
+    email.folder = 'inbox'
+    email.to = 'user@appsus.com'
+
+    return storageService.post(EMAIL_KEY, email)
+}
+
+
+function getEmail(emailId) {
+    return storageService.get(EMAIL_KEY, emailId)
+}
+
+function moveToTrash(emailId) {
+    return storageService.get(EMAIL_KEY, emailId)
+        .then(email => {
+            email.folder = 'trash'
+            return storageService.put(EMAIL_KEY, email)
+        })
+}
+
 function deleteEmail(emailId) {
+
     return storageService.remove(EMAIL_KEY, emailId)
 }
 

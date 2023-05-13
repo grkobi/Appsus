@@ -19,6 +19,8 @@
     background-color: var(--clrMailSideBarBg);
     font-family: inherit;
     font-weight: 700;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
 }
     
 

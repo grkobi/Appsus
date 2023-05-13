@@ -14,9 +14,10 @@ export function MailIndex() {
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
     const [searchBy, setSearchBy] = useState('')
     const [isComposeModalOpen, setComposeModalOpen] = useState(false)
-    console.log('mails', mails)
-    console.log('filterBy', filterBy)
-   
+    
+    
+    // console.log('filterBy', filterBy)
+ 
     useEffect(() => {
         // showErrorMsg('Error message!')
         // showSuccessMsg('success message!')
@@ -30,11 +31,32 @@ export function MailIndex() {
             })
     }
 
-    function onDeleteMail(mailId) {
-        mailService.deleteEmail(mailId).then(() => {
-            const updatedMails = mails.filter(mail => mail.id !== mailId)
-            setMails(updatedMails)
+    function receiveNewMail() {
+        mailService.receiveNewEmail().then(newMail => {
+            if (newMail) {
+                showSuccessMsg('New email received!')
+                setMails(prevMails => [...prevMails, newMail])
+            }
         })
+    }
+    
+    // setInterval(receiveNewMail, 10000)
+   
+
+    function onDeleteMail(mailId, folder) {
+        if (folder === 'trash') {
+            mailService.deleteEmail(mailId).then(() => {
+                const updatedMails = mails.filter(mail => mail.id !== mailId)
+                setMails(updatedMails)
+            })
+        }
+        else {
+            mailService.moveToTrash(mailId).then(() => {
+                const updatedMails = mails.filter(mail => mail.id !== mailId)
+                setMails(updatedMails)
+                // loadMails()
+            })
+        }
     }
 
 
@@ -85,8 +107,11 @@ export function MailIndex() {
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, txt: searchBy }))
     }
 
-    if (!mails) return <div>Loading...</div>
 
+
+    if (!mails) return <div>Loading...</div>
+    console.log('mails', mails)
+    
     return <section className="mail-index">
         <button className="compose-btn" onClick={() => setComposeModalOpen(true)}>
             <img src="assets/img/mailIcons/asset24.png" />
@@ -95,22 +120,10 @@ export function MailIndex() {
         <SearchFilter onSetSearch={onSetSearch} searchBy={searchBy} />
         <SideFilter onSetFilter={onSetFilter} filterBy={filterBy} />
         <MailList mails={mails} onDeleteMail={onDeleteMail} onToggle={toggles} />
-        {/* {isComposeModalOpen && (
-            <div className="compose-modal">
-                <form className="compose-form flex column">
-                    <input type="text" placeholder="To" />
-                    <input type="text" placeholder="Subject" />
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                    <button>Send</button>
-                </form>
-                <button onClick={() => setComposeModalOpen(false)}>Close</button>
-            </div>
-        )} */}
 
-        {isComposeModalOpen && ( 
-        <ComposeModal onClose={() => setComposeModalOpen(false)} />
+        {isComposeModalOpen && (
+            <ComposeModal onClose={() => setComposeModalOpen(false)} />
         )}
-      {/* <UserMsg /> */}
 
     </section>
 }
