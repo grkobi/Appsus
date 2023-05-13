@@ -21,6 +21,8 @@ export function App() {
                 <Route path="/note" element={<NoteIndex />} />
             </Routes>
             <UserMsg />
+            {/* <footer className="app-footer"/> */}
         </section>
+        
     </Router>
 }

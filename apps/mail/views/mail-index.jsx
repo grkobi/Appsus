@@ -14,9 +14,9 @@ export function MailIndex() {
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
     const [searchBy, setSearchBy] = useState('')
     const [isComposeModalOpen, setComposeModalOpen] = useState(false)
-    console.log('mails', mails)
-    console.log('filterBy', filterBy)
-
+    
+    // console.log('filterBy', filterBy)
+ 
     useEffect(() => {
         // showErrorMsg('Error message!')
         // showSuccessMsg('success message!')
@@ -30,6 +30,18 @@ export function MailIndex() {
             })
     }
 
+    function receiveNewMail() {
+        mailService.receiveNewEmail().then(newMail => {
+            if (newMail) {
+                showSuccessMsg('New email received!')
+                setMails(prevMails => [...prevMails, newMail])
+            }
+        })
+    }
+    
+    // setInterval(receiveNewMail, 10000)
+   
+
     function onDeleteMail(mailId, folder) {
         if (folder === 'trash') {
             mailService.deleteEmail(mailId).then(() => {
@@ -41,6 +53,7 @@ export function MailIndex() {
             mailService.moveToTrash(mailId).then(() => {
                 const updatedMails = mails.filter(mail => mail.id !== mailId)
                 setMails(updatedMails)
+                // loadMails()
             })
         }
     }
@@ -93,8 +106,11 @@ export function MailIndex() {
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, txt: searchBy }))
     }
 
-    if (!mails) return <div>Loading...</div>
 
+
+    if (!mails) return <div>Loading...</div>
+    console.log('mails', mails)
+    
     return <section className="mail-index">
         <button className="compose-btn" onClick={() => setComposeModalOpen(true)}>
             <img src="assets/img/mailIcons/asset24.png" />
@@ -112,3 +128,12 @@ export function MailIndex() {
 }
 
 
+// function receiveNewMail() {
+//     mailService.receiveNewEmail().then(newMail => {
+//         if (newMail) {
+//             showSuccessMsg('New email received!')
+//             setMails(prevMails => [...prevMails, newMail])
+//         }
+//     })
+// }
+// setInterval(receiveNewMail, 20000)
