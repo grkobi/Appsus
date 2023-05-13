@@ -52,12 +52,21 @@ export function NoteIndex() {
             })
     }
 
+    function onPinNote(note) {
+        console.log(note)
+        // const noteIndex = notes.findIndex(note => note.id === noteId);
+        // const pinnedNote = notes[noteIndex];
+        // notes.splice(noteIndex, 1);
+        // notes.unshift(pinnedNote);
+        // setNotes([...notes]);
+    }
+
 
     return (
         <section className="notes-index">
             <NoteAdd onNewNote={onNewNote} newNote={newNote} />
             <NoteFilter onFilterBy={onFilterBy} />
-            <NoteList notes={notes} onRemoveNote={onRemoveNote} />
+            <NoteList notes={notes} onRemoveNote={onRemoveNote} onPinNote={onPinNote} />
         </section>
     )
 }
