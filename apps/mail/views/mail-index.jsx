@@ -15,6 +15,7 @@ export function MailIndex() {
     const [searchBy, setSearchBy] = useState('')
     const [isComposeModalOpen, setComposeModalOpen] = useState(false)
     
+    
     // console.log('filterBy', filterBy)
  
     useEffect(() => {
@@ -128,12 +129,3 @@ export function MailIndex() {
 }
 
 
-// function receiveNewMail() {
-//     mailService.receiveNewEmail().then(newMail => {
-//         if (newMail) {
-//             showSuccessMsg('New email received!')
-//             setMails(prevMails => [...prevMails, newMail])
-//         }
-//     })
-// }
-// setInterval(receiveNewMail, 20000)

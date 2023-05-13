@@ -1,12 +1,29 @@
+const { useState, useEffect } = React
+
 import { MailPreview } from '/mail-preview.jsx'
 import { mailService } from '../services/mail.service.js'
+import { MailDetails } from './mail-details.jsx'
+
 
 
 export function MailList({ mails, onDeleteMail, onToggle}) {
 
+    const [areMailDetailsOpen, setAreMailDetailsOpen] = useState(false)
+    const [mailDetails, setMailDetails] = useState(null)
+
+    // useEffect(() => {
+    //     console.log('mails', mails)
+    // }, [mails])
+
+
+    function openDetails(mail) {
+        setMailDetails(mail)
+        setAreMailDetailsOpen(true)
+    }
+
     return (
         <ul className="mail-list clean-list">
-            {mails.map(mail => <li className={`mail-list-item ${mail.isRead ? 'is-read' : ''}`} key={mail.id}>
+            {mails.map(mail => <li onDoubleClick={() => {openDetails(mail)}} className={`mail-list-item ${mail.isRead ? 'is-read' : ''}`} key={mail.id}>
                 <button  onClick={() => { onToggle.onToggleIsStarred(mail.id) }}>
                     {mail.isStarred ? (
                         <img src="assets/img/mailIcons/asset63.png" alt="Starred" />
@@ -32,6 +49,9 @@ export function MailList({ mails, onDeleteMail, onToggle}) {
                 <button onClick={() => { onDeleteMail(mail.id, mail.folder) }}><img src="assets/img/mailIcons/asset50.png" /></button>
 
             </li>)}
+            {areMailDetailsOpen && (
+            <MailDetails onClose={() => setAreMailDetailsOpen(false)} mailDetails={mailDetails} />
+        )}
         </ul>
     )
 }
