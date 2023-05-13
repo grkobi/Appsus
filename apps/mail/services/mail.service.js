@@ -4,6 +4,7 @@ import { utilService } from '../../../services/util.service.js'
 
 const EMAIL_KEY = 'emailDB'
 
+
 const gEmails = [{
     id: 'e101',
     subject: 'Hey there!',
@@ -103,6 +104,8 @@ const loggedinUser = {
 
 _createEmails()
 
+let gEmailsCount = _countEmails()
+
 export const mailService = {
     query,
     getEmptyEmail,
@@ -116,7 +119,8 @@ export const mailService = {
     moveToTrash,
     getEmail,
     receiveNewEmail,
-    getMailsCounts
+    getMailsCounts,
+    getMailCount
 
 }
 
@@ -169,22 +173,22 @@ function query(filterBy = {}) {
                 if (filterBy.folder === 'inbox') {
                     emails = emails.filter(email => {
                         return email.to === loggedinUser.email && (email.folder !== 'trash') &&
-                         (email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
-                        email.body.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
-                        email.to.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
-                        email.from.toLowerCase().includes(filterBy.txt.toLowerCase()))
+                            (email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                                email.body.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                                email.to.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                                email.from.toLowerCase().includes(filterBy.txt.toLowerCase()))
                     })
                 }
                 else {
                     emails = emails.filter(email => {
                         return email.folder === filterBy.folder && (email.subject.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
-                        email.body.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
-                        email.to.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
-                        email.from.toLowerCase().includes(filterBy.txt.toLowerCase()))
+                            email.body.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                            email.to.toLowerCase().includes(filterBy.txt.toLowerCase()) ||
+                            email.from.toLowerCase().includes(filterBy.txt.toLowerCase()))
                     })
                 }
         }
-        
+
 
         return emails
     })
@@ -216,6 +220,10 @@ function getMailsCounts() {
     })
 }
 
+function getMailCount() {
+    return gEmailsCount
+}
+
 
 function _createEmails() {
     let emails = utilService.loadFromStorage(EMAIL_KEY)
@@ -223,6 +231,14 @@ function _createEmails() {
 
         utilService.saveToStorage(EMAIL_KEY, gEmails)
     }
+
+}
+
+function _countEmails() {
+    return storageService.query(EMAIL_KEY)
+        .then(emails => {
+            return emails.length
+        })
 }
 
 

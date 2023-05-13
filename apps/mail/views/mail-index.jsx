@@ -14,6 +14,7 @@ export function MailIndex() {
     const [searchBy, setSearchBy] = useState('')
     const [isComposeModalOpen, setComposeModalOpen] = useState(false)
     const [mailsCount, setMailsCount] = useState({})
+    const [mailCount, setMailCount] = useState(mailService.getMailCount())
 
 
 
@@ -21,8 +22,8 @@ export function MailIndex() {
         // showErrorMsg('Error message!')
         // showSuccessMsg('success message!')
         loadMails()
-
-    }, [filterBy, searchBy])
+       
+    }, [filterBy, searchBy, mailCount])
 
     useEffect(() => {
         console.log('mailsCount', mailsCount)
@@ -38,6 +39,18 @@ export function MailIndex() {
             })
     }
 
+
+    function checkNewEmail(){
+        let currMailCount = mailService.getMailCount()
+        console.log('currMailCount', currMailCount)
+        if (currMailCount !== mailCount) {
+            setMailCount(currMailCount)
+            console.log('mailCount', mailCount)
+            return true
+        }
+    }
+
+    setInterval(checkNewEmail, 10000)
     
     function receiveNewMail() {
         mailService.receiveNewEmail().then(newMail => {
