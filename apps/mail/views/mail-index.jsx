@@ -16,7 +16,7 @@ export function MailIndex() {
     const [isComposeModalOpen, setComposeModalOpen] = useState(false)
     console.log('mails', mails)
     console.log('filterBy', filterBy)
-   
+
     useEffect(() => {
         // showErrorMsg('Error message!')
         // showSuccessMsg('success message!')
@@ -30,11 +30,19 @@ export function MailIndex() {
             })
     }
 
-    function onDeleteMail(mailId) {
-        mailService.deleteEmail(mailId).then(() => {
-            const updatedMails = mails.filter(mail => mail.id !== mailId)
-            setMails(updatedMails)
-        })
+    function onDeleteMail(mailId, folder) {
+        if (folder === 'trash') {
+            mailService.deleteEmail(mailId).then(() => {
+                const updatedMails = mails.filter(mail => mail.id !== mailId)
+                setMails(updatedMails)
+            })
+        }
+        else {
+            mailService.moveToTrash(mailId).then(() => {
+                const updatedMails = mails.filter(mail => mail.id !== mailId)
+                setMails(updatedMails)
+            })
+        }
     }
 
 
@@ -95,22 +103,10 @@ export function MailIndex() {
         <SearchFilter onSetSearch={onSetSearch} searchBy={searchBy} />
         <SideFilter onSetFilter={onSetFilter} filterBy={filterBy} />
         <MailList mails={mails} onDeleteMail={onDeleteMail} onToggle={toggles} />
-        {/* {isComposeModalOpen && (
-            <div className="compose-modal">
-                <form className="compose-form flex column">
-                    <input type="text" placeholder="To" />
-                    <input type="text" placeholder="Subject" />
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                    <button>Send</button>
-                </form>
-                <button onClick={() => setComposeModalOpen(false)}>Close</button>
-            </div>
-        )} */}
 
-        {isComposeModalOpen && ( 
-        <ComposeModal onClose={() => setComposeModalOpen(false)} />
+        {isComposeModalOpen && (
+            <ComposeModal onClose={() => setComposeModalOpen(false)} />
         )}
-      {/* <UserMsg /> */}
 
     </section>
 }

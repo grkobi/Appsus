@@ -112,7 +112,10 @@ export const mailService = {
     toggleIsStarred,
     toggleIsImportant,
     getLoggedinUser,
-    saveEmail
+    saveEmail,
+    moveToTrash,
+    getEmail,
+    receiveNewEmail
 }
 
 
@@ -190,7 +193,33 @@ function _createEmails() {
 }
 
 
+function receiveNewEmail() {
+    let email = getEmptyEmail()
+    email.from ='spam@spam.com'
+    email.subject = 'You won 1,000,000$'
+    email.body = 'Please send us your credit card number'
+    email.sentAt = Date.now()
+    email.folder = 'inbox'
+    email.to = 'user@appsus.com'
+
+    return storageService.post(EMAIL_KEY, email)
+}
+
+
+function getEmail(emailId) {
+    return storageService.get(EMAIL_KEY, emailId)
+}
+
+function moveToTrash(emailId) {
+    return storageService.get(EMAIL_KEY, emailId)
+        .then(email => {
+            email.folder = 'trash'
+            return storageService.put(EMAIL_KEY, email)
+        })
+}
+
 function deleteEmail(emailId) {
+
     return storageService.remove(EMAIL_KEY, emailId)
 }
 

@@ -21,8 +21,18 @@
     align-items: center;
     padding: 0.5rem 0.5rem;
     gap: 0.5rem;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid var(--clrMailSideBarBg);
     cursor: pointer;
+    height: 2.5em;
+}
+
+.mail-list-item:hover{
+    border:1px solid var(--clrMailSideBarBg);
+    box-shadow: inset 0 0 1em inherit;
+}
+
+.mail-list-item.is-read{
+    background-color: var(--clrMailSideBarBg);
 }
 
 .mail-list-item article{
