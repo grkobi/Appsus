@@ -50,7 +50,7 @@ export function MailIndex() {
         }
     }
 
-    setInterval(checkNewEmail, 10000)
+    // setInterval(checkNewEmail, 10000)
     
     function receiveNewMail() {
         mailService.receiveNewEmail().then(newMail => {
