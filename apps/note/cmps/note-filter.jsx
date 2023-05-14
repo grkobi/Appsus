@@ -18,7 +18,7 @@ export function NoteFilter({ onFilterBy }) {
             <form className="text-filter-form" onSubmit={onSubmitFilter}>
                 <input className="input-filter" type="text" id="txt"
                     name="txt" value={text} onChange={(ev) => setText(ev.target.value)} placeholder="Search for a note" />
-                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button type="submit"><i className="fa-solid fa-magnifying-glass"></i></button>
             </form>
             <select onChange={onChangeType}>
                 <option value=''>All</option>

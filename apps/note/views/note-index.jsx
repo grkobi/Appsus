@@ -52,9 +52,24 @@ export function NoteIndex() {
             })
     }
 
-    function onPinNote(note) {
-        console.log(note)
+    function onPinNote(noteId) {
+        setNotes(prev => {
+            const noteIndex = prev.findIndex(note => note.id === noteId);
+            return  [
+                prev[noteIndex],
+                ...prev.slice(0, noteIndex),
+                ...prev.slice(noteIndex + 1)
+            ] 
+        })
+
         // const noteIndex = notes.findIndex(note => note.id === noteId);
+        // const newNotes = [
+        //     notes[noteIndex],
+        //     ...notes.slice(0, noteIndex),
+        //     ...notes.slice(noteIndex + 1)
+        // ]
+        // setNotes(newNotes)
+
         // const pinnedNote = notes[noteIndex];
         // notes.splice(noteIndex, 1);
         // notes.unshift(pinnedNote);
