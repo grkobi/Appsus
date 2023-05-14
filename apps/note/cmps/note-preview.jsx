@@ -7,7 +7,7 @@ import { NoteVideo } from "./note-video.jsx"
 import { utilService } from "../../../services/util.service.js"
 
 
-export function NotePreview({ note, onRemoveNote }) {
+export function NotePreview({ note, onRemoveNote, onPinClick }) {
 
     const { type } = note
     const [color, setColor] = useState('#DE3163')
@@ -40,6 +40,7 @@ export function NotePreview({ note, onRemoveNote }) {
             {/* <button  onClick={() => onChangeColor(note.id)}><i className="fa-solid fa-palette"></i></button> */}
             <button onClick={() => onRemoveNote(note.id)} className="remove-note"><i class="fa-solid fa-trash"></i></button>
             <button onClick={() => click(["#F08080","#FFAC1C","blue"])} className="change-color"><i className="fa-solid fa-palette"></i></button>
+            <button onClick={() => onPinClick(note.id)} className="pinned-note"><i className="fa-solid fa-thumbtack"></i></button>
         </section>
     )
 }

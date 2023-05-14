@@ -13,7 +13,7 @@
 }
 
 .img-preview {
-    max-width: 20vw;
+    max-width: 15vw;
     padding: 5vh
 }
 
@@ -25,6 +25,12 @@
 
 .change-color {
     position: absolute;
-    right: 60px;
+    right: 55px;
+    bottom: 15px; 
+}
+
+.pinned-note {
+    position: absolute;
+    right: 100px;
     bottom: 15px; 
 }

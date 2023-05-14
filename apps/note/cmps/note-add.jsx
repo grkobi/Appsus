@@ -18,6 +18,12 @@ export function NoteAdd({ onNewNote, newNote }) {
         const note = noteService.createNote(noteType, textInput, noteData);
         onNewNote(note)
     }
+    
+    const handleNoteTypeChange = (e) => {
+        const { id } = e.target;
+        setNoteType(id)
+    }
+
 
     return (
         <form onSubmit={handleSubmitNote} className="flex create-form">
@@ -26,19 +32,11 @@ export function NoteAdd({ onNewNote, newNote }) {
 
                     <textarea className="textarea-add-note" name="txt" placeholder="Enter your note..." />
 
-                    {/* <input type="text"
-                        id="txt"
-                        name="txt"
-                        placeholder={noteType === 'Enter text'}
-                    /> */}
-
-                    {/* {noteType !== 'note-txt' ? <input className="note-data" placeholder={PLACEHOLDER[noteType]} type='text' id='noteData' name='noteData' /> : null} */}
-
                 </div>
                 <button className="save-note-btn" ><i class="fa-solid fa-plus"></i></button>
                 <div className="options-container">
                     <label htmlFor="note-txt"><i class="fa-solid fa-font"></i></label>
-                    <input type="radio" name="note-type" id="note-txt" defaultChecked />
+                    <input type="radio" name="note-type" id="note-txt" defaultChecked onChange={handleNoteTypeChange} />
                     <label htmlFor="note-img"><i class="fa-solid fa-image"></i></label>
                     <input type="radio" name="note-type" id="note-img" />
                     <label htmlFor="note-video"><i class="fa-solid fa-video"></i></label>
